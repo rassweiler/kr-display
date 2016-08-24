@@ -1,0 +1,22 @@
+<template name="CellList">
+	<div class="billboard">
+		<h2>Cell List</h2>
+	</div>
+	<section class="cells">
+		{{#if Template.subscriptionsReady}}
+			{{#if cells}}
+				{{#each cells}}
+					{{> CellCard}}
+				{{/each}}
+			{{else}}
+				<h3>
+					No cells currently set for plant, please contact the Admin.
+				</h3>
+			{{/if}}
+		{{else}}
+			<p>
+				Loading...
+			</p>
+		{{/if}}
+	</section>
+</template>

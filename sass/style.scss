@@ -1,0 +1,421 @@
+@import 'normalise.scss';
+@import 'base.scss';
+
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	color: $text;
+	font-family: Raleway,'Open Sans', sans-serif;
+}
+
+h1 {
+	font-weight: 100;
+	font-size: 3.998em;
+}
+
+h2 {
+	font-weight: 100;
+	font-size: 3.157em;
+}
+
+h3 {
+	font-size: 1.777em;
+	font-weight: 100;
+}
+
+p {
+	font-size: 1em;
+}
+
+a {
+	color: $accent;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+	padding: 10px 10px 7px;
+}
+
+.btn, button {
+	background: $action;
+	text-transform: uppercase;
+	text-decoration: none;
+	display: inline-block;
+	font-weight: 800;
+	padding: 10px 51px 7px;
+	color: #FFF;
+	letter-spacing: 1px;
+	border: solid 2px $action;
+	@include trans();
+	&:hover {
+		background: $action - 30;
+		border-color: $action - 30;
+	}
+}
+
+.btn-text {
+	@extend .btn;
+	background: transparent;
+}
+
+.btn-primary {
+	@extend .btn;
+	background: $accent;
+	border: solid 2px $accent;
+	&:hover {
+		background: $accent - 30;
+		border-color: $accent - 30;
+	}
+}
+
+.header {
+	background: $navbg;
+	border-bottom: 1px solid $dgrey;
+	color: $text;
+	position: relative;
+	z-index: 10;
+	height: $headerheight;
+	padding: 5px 5%;
+	display: flex;
+	justify-content: space-between;
+	@include card(1);
+	a {
+		color: $text;
+	}
+	.site-title {
+		line-height: 0;
+		margin: 0;
+	}
+}
+
+.site-title{
+	a{
+		img{
+			max-height: $headerheight - 8;
+		}
+	}
+}
+
+.nav {
+	ul {
+		list-style: none;
+		display: flex;
+		padding: 0;
+		margin-top: $headerheight/6;
+	}
+	li{
+		&:hover{
+			background: $navhover;
+		}
+	}
+	li + li {
+		margin-left: 20px;
+	}
+	a {
+		text-decoration: none;
+		border-bottom: 2px solid transparent;
+	}
+}
+
+.login, .logout {
+    cursor: pointer;
+}
+
+.billboard{
+	background: white;
+	border-bottom: 1px solid $dgrey;
+	color: $text;
+	position: relative;
+	font-size: 0.8em;
+	text-align: center;
+	padding: 10px;
+	z-index: 3;
+	h2{
+		margin: 0;
+	}
+}
+
+.add-cell{
+	margin-bottom: 20px;
+}
+ 
+.add-cell{
+	position: relative;
+	background: #FFF;
+	padding: 20px;
+	margin-bottom: 20px;
+	@include shadow-level(2);
+	.fa-close{
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 20px;
+	}
+	label{
+		display: block;
+		margin-bottom: 10px;
+	}
+	textarea, input{
+		width: 100%;
+	}
+}
+
+.btn, button{
+	display: inline-block;
+	cursor: pointer;
+	background: $dblue;
+	color: #FFF;
+	text-decoration: none;
+	text-transform: uppercase;
+	padding: 5px 15px;
+	border: solid 3px $dblue;
+	border-radius: 2px;
+	font-weight: 800;
+	@include shadow-level(1);
+	@include trans();
+	&:hover{
+		background: $blue;
+		border-color: $blue;
+		@include shadow-level(2);
+	}
+	&.btn-primary{
+		background: $grey;
+		border-color: $dgrey;
+		color: $black;
+		&:hover{
+			background: $dgrey;
+			border-color: $dgrey;
+		}
+	}
+	&.btn-deny{
+		background: $red;
+		border: solid 3px $red;
+		&:hover{
+			background: $dred;
+			border-color: $dred;
+		}
+	}
+	&.btn-text{
+		color: $black;
+		background: transparent;
+		border: solid 2px $dgrey;
+		@include shadow-level(0);
+		&:hover{
+			background: $dblue;
+			border-color: $dblue;
+			@include shadow-level(1);
+		}
+	}
+	&.btn-text-dark{
+		color: #FFF;
+		background: transparent;
+		border: solid 2px #FFF;
+		@include shadow-level(0);
+		&:hover{
+			background: #FFF;
+			color: $dblue;
+			border-color: $dblue;
+			@include shadow-level(1);
+		}
+	}
+	&.btn-confirmation{
+		color: $black;
+		background: $green;
+		border: solid 2px $navbg;
+		&:hover{
+			background: $navbg;
+			border-color: $dblue;
+		}
+	}
+	&.btn-cancel{
+		color: #FFF;
+		background: transparent;
+		border: solid 2px #FFF;
+		opacity: 0.4;
+		@include shadow-level(-1);
+		&:hover{
+			background: red;
+			color: #FFF;
+			opacity: 1;
+			@include shadow-level(2);
+			border-color: $grey
+		}
+	}
+}
+ 
+input, select, textarea{
+	color: $navbg;
+	background: #FFF;
+	border: solid 2px light-grey;
+	border-radius: 2px;
+	font-weight: 800;
+	width: 100%;
+	padding: 6px 10px;
+	margin-bottom: 10px;
+	&.static-input{
+		border: none;
+		background: transparent;
+	}
+ }
+
+.list-group{
+	list-style: none;
+	padding: 0;
+}
+   
+.panel-body{
+	.form-group{
+		lost-column: 1/2;
+	}
+}
+
+.autoform-remove-item.btn{
+	background: light-grey;
+	box-shadow: none;
+	border: none;
+	border-radius: 50%;
+	font-size: 1em;
+	height: 25px;
+	width: 25px;
+	text-align: center;
+	display: block;
+	padding: 0;
+}
+ 
+.autoform-add-item.btn{
+	width: 100%;
+	border-radius: 0;
+	border: none;
+	box-shadow: none;
+	background: light-grey;
+}	 
+ 
+.autoform-remove-item-wrap{
+	vertical-align: middle;
+}
+
+.fa-close{
+	cursor: pointer;
+	&:hover{
+		color: $dgrey;
+	}
+}
+
+img.plant-layout{
+	width:auto;
+	max-height: 35vh;
+	border-radius: 5px;
+	object-fit: contain;
+	padding: 7px;
+	margin-top: 10px;
+	@include card(2);
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.cell-card{
+	@include card(1);
+	width:100px;
+	a{
+		text-decoration: none;
+		text-align: center;
+		color: $black;
+	}
+}
+
+.plant-utilites {
+	margin-left:auto;
+	margin-right:auto;
+	display: block;
+	text-align: center;
+	width:340px;
+	ul {
+		list-style: none;
+		display: flex;
+		padding: 0;
+	}
+	li + li {
+		margin-left: 20px;
+	}
+	.utility{
+		width: 100px;
+		height: 100px;
+		border-radius: 5px;
+		font-weight: bolder;
+		@include card(3);
+	}
+	.status-up{
+		background: $statusup;
+	}
+	.status-down{
+		background: $statusdown;
+	}
+	span {
+		line-height:100px;
+	}
+}
+
+.cells{
+	width:100%;
+	text-align: center;
+	.plant-cells{
+		width: 100%;
+	}
+	.cell{
+		width: 80px;
+		height: 80px;
+		margin: 10px;
+		border-radius: 5px;
+		font-weight: bolder;
+		background: $cellbg;
+		display: inline-block;
+		@include card(3);
+	}
+	.status-down{
+		background: $statusdown;
+	}
+	.status-downanswered{
+		background: $statusanswered;
+	}
+	span {
+		line-height:80px;
+	}
+}
+
+.cell-legend{
+	text-align:center;
+	width: 180px;
+	margin: 20px;
+	ul {
+		list-style: none;
+	}
+	li + li{
+		margin-top: 5px;
+	}
+	li{
+		border-radius: 5px;
+	}
+	.running{
+		background: $cellbg;
+		border-style:solid;
+		border-color: $cellbg - 20;
+	}
+	.down{
+		background: $statusdown;
+		border-style:solid;
+		border-color: $statusdown - 20;
+	}
+	.answered{
+		background: $statusanswered;
+		border-style:solid;
+		border-color: $statusanswered - 20;
+	}
+}

@@ -1,0 +1,11 @@
+{
+  "private":{
+
+  },
+  "public": {
+    "plantLayout":{
+    	"alt":"Test Image",
+    	"src": "/img/PlantLayout.png"
+    }
+  }
+}

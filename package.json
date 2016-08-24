@@ -1,0 +1,24 @@
+{
+	"name": "kr-display",
+	"private": true,
+	"scripts": {
+		"start": "meteor run"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/rassweiler/kr-display.git"
+	},
+	"dependencies": {
+		"meteor-node-stubs": "~0.2.0",
+		"moment": "^2.14.1"
+	},
+	"version": "1.0.0",
+	"description": "Diplay client for connecting to an mssql database.",
+	"main": "both/routes.js",
+	"keywords": [
+		"scada"
+	],
+	"author": "Kyle Rassweiler",
+	"license": "MIT",
+	"homepage": "https://github.com/rassweiler/kr-display#readme"
+}

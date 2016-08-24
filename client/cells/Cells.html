@@ -1,0 +1,36 @@
+<template name="Cells">
+	<section class="cells">
+		{{#if Template.subscriptionsReady}}
+			<div class="cell-legend">
+				<ul>
+					<li class="running">
+						Cell Running
+					</li>
+					<li class="down">
+						Cell Down
+					</li>
+					<li class="answered">
+						Cell Answered
+					</li>
+				</ul>
+			</div>
+			<div class="plant-cells">
+				{{#if cells}}
+					{{#each cells}}
+						<div class="cell status-{{#if down}}down{{/if}}{{#if answered}}answered{{/if}}">
+							<span>{{name}}</span>
+						</div>
+					{{/each}}
+				{{else}}
+					<h4>
+						No cells currently set for plant, please contact the Admin.
+					</h4>
+				{{/if}}
+			</div>
+		{{else}}
+			<p>
+				Loading...
+			</p>
+		{{/if}}
+	</section>
+</template>

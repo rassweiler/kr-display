@@ -1,0 +1,25 @@
+<template name="Utilities">
+	<section class="utilities">
+		{{#if Template.subscriptionsReady}}
+			<div class="plant-utilites">
+			{{#if utilities}}
+				<ul>
+				{{#each utilities}}
+					<li class="utility status-{{#if fault}}down{{else}}up{{/if}}">
+						<span>{{name}}</span>
+					</li>
+				{{/each}}
+				</ul>
+			{{else}}
+				<h4>
+					No utilites currently set for plant, please contact the Admin.
+				</h4>
+			{{/if}}
+			</div>
+		{{else}}
+			<p>
+				Loading...
+			</p>
+		{{/if}}
+	</section>
+</template>
