@@ -388,6 +388,13 @@ img.plant-layout{
 	span {
 		line-height:80px;
 	}
+	.plant-cells{
+		.cell-link{
+			text-decoration: none;
+			text-align: center;
+			color: $black;
+		}
+	}
 }
 
 .cell-legend{

@@ -14,7 +14,7 @@ var cellRoutes = FlowRouter.group({
 cellRoutes.route('/', {
 	name: 'cells',
 	action() {
-		BlazeLayout.render("MainLayout", {main: "Cells"});
+		BlazeLayout.render("MainLayout", {main: "CellList"});
 	}
 });
 

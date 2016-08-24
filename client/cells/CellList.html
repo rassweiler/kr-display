@@ -5,9 +5,15 @@
 	<section class="cells">
 		{{#if Template.subscriptionsReady}}
 			{{#if cells}}
+				<div class="plant-cells">
 				{{#each cells}}
-					{{> CellCard}}
+					<a href="/cells/{{_id}}" class="cell-link">
+					<div class="cell">
+						<span>{{name}}</span>
+					</div>
+					</a>
 				{{/each}}
+				</div>
 			{{else}}
 				<h3>
 					No cells currently set for plant, please contact the Admin.
