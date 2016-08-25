@@ -308,17 +308,63 @@ input, select, textarea{
 	}
 }
 
-img.plant-layout{
+.plant-info{
 	width:auto;
-	max-height: 35vh;
+	height:30vh;
 	border-radius: 5px;
-	object-fit: contain;
 	padding: 7px;
 	margin-top: 10px;
 	@include card(2);
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+	display: inline-flex;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	@media screen and (max-width: $small) {
+		height:18vh;
+	}
+	.plant-layout{
+		height:100%;
+		img{
+			height: 100%;
+			width:auto;
+			object-fit: contain;
+		}
+	}
+	.status-up{
+		background: $statusup;
+	}
+	.status-down{
+		background: $statusdown;
+	}
+	.utilities {
+		display: inline-block;
+		height:60%;
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+		.utility {
+			width: 12vh;
+			height: 100%;
+			display: inline-block;
+			border-radius: 5px;
+			font-weight: bolder;
+			font-size: 2.5vh;
+			@include card(3);
+			text-align: center;
+			margin-left: 1vh;
+			vertical-align: middle;
+			@media screen and (max-width: $small) {
+				width:7vh;
+				font-size: 1.5vh;
+			}
+			span{
+				text-align: center;
+				position: relative;
+				top: 45%;
+				transform: translateY(-50%);
+			}
+		}
+	}
 }
 
 .cell-card{
@@ -331,38 +377,6 @@ img.plant-layout{
 	}
 }
 
-.plant-utilites {
-	margin-left:auto;
-	margin-right:auto;
-	display: block;
-	text-align: center;
-	width:340px;
-	ul {
-		list-style: none;
-		display: flex;
-		padding: 0;
-	}
-	li + li {
-		margin-left: 20px;
-	}
-	.utility{
-		width: 100px;
-		height: 100px;
-		border-radius: 5px;
-		font-weight: bolder;
-		@include card(3);
-	}
-	.status-up{
-		background: $statusup;
-	}
-	.status-down{
-		background: $statusdown;
-	}
-	span {
-		line-height:100px;
-	}
-}
-
 .cells{
 	width:100%;
 	text-align: center;
@@ -370,23 +384,40 @@ img.plant-layout{
 		width: 100%;
 	}
 	.cell{
+		width: 60px;
+		height: 60px;
+		margin: 6px;
+		border-radius: 5px;
+		font-weight: bolder;
+		font-size: 0.8em;
+		background: $cellbg;
+		display: inline-block;
+		@include card(1);
+		span {
+			line-height:60px;
+		}
+	}
+	.cell2{
 		width: 80px;
 		height: 80px;
 		margin: 10px;
 		border-radius: 5px;
 		font-weight: bolder;
-		background: $cellbg;
+		background: $lgrey;
 		display: inline-block;
-		@include card(3);
+		@include card(2);
+		&:hover{
+			background: $dgrey;
+		}
+		span {
+			line-height:80px;
+		}
 	}
 	.status-down{
 		background: $statusdown;
 	}
 	.status-downanswered{
 		background: $statusanswered;
-	}
-	span {
-		line-height:80px;
 	}
 	.plant-cells{
 		.cell-link{
@@ -399,16 +430,19 @@ img.plant-layout{
 
 .cell-legend{
 	text-align:center;
-	width: 180px;
+	width: 600x;
 	margin: 20px;
+
 	ul {
 		list-style: none;
+		display:flex;
 	}
 	li + li{
-		margin-top: 5px;
+		margin-left: 10px;
 	}
 	li{
 		border-radius: 5px;
+		display:flex;
 	}
 	.running{
 		background: $cellbg;
@@ -424,5 +458,15 @@ img.plant-layout{
 		background: $statusanswered;
 		border-style:solid;
 		border-color: $statusanswered - 20;
+	}
+	@media screen and (max-width: $small) {
+		margin:0;
+	}
+}
+
+#chart{
+	width: 100%;
+	svg{
+		width:100%;
 	}
 }

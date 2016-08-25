@@ -3,12 +3,14 @@
 		<h2>Plant Overview</h2>
 	</div>
 	<section>
-	{{#if plantLayout }}
-		<img class="plant-layout" alt="{{ plantLayout.alt }}" src="{{ plantLayout.src }}">
-	{{/if}}
-	</section>
-	<section>
-		{{> Utilities}}
+		<div class="plant-info">
+		{{#if plantLayout }}
+			<div class="plant-layout">
+			<img alt="{{ plantLayout.alt }}" src="{{ plantLayout.src }}">
+			</div>
+		{{/if}}
+			{{> Utilities}}
+		</div>
 	</section>
 	<section>
 		{{> Cells}}

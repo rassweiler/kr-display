@@ -1,11 +1,29 @@
 {
-  "private":{
-
-  },
-  "public": {
-    "plantLayout":{
-    	"alt":"Test Image",
-    	"src": "/img/PlantLayout.png"
-    }
-  }
+	"private":{
+		"database":{
+			"type":"mssql",
+			"username": "Test",
+			"password": "test",
+			"server":"192.168.0.2",
+			"options":{
+				"encrypt": false
+			}
+		},
+		"cells":[
+			{
+				"name":"R3H"
+			}
+		],
+		"utilities":[
+			{
+				"name":"Electrical"
+			}
+		]
+	},
+	"public": {
+		"plantLayout":{
+			"alt":"Test Image",
+			"src": "/img/PlantLayout.png"
+		}
+	}
 }

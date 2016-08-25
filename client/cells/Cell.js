@@ -1,7 +1,8 @@
 Template.Cell.onCreated(function(){
 	var self = this;
 	self.autorun(function(){
-		self.subscribe('cells');
+		var id = FlowRouter.getParam('_id');
+		self.subscribe('cell', id);
 	});
 });
 

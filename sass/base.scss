@@ -76,6 +76,7 @@ $green: #48de48;
 $lblue: #BBCBEE;
 $blue: #1b66ff;
 $dblue: #19283f;
+$lgrey: #f9f9f9;
 $grey: #f7f7f7;
 $dgrey: #CCC;
 $black: #27272b;
@@ -95,5 +96,7 @@ $headerheight: 50px;
 $statusdown: #de4f4f;
 $statusup: #48de48;
 $statusanswered: #c77012;
+
+$small: 720px;
 
 @include fontFace(Raleway, fonts/Raleway-Regular);
