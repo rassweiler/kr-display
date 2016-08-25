@@ -428,6 +428,18 @@ input, select, textarea{
 	}
 }
 
+.cell-title{
+	background: $cellup;
+}
+
+.cell-down{
+	background: $celldown;
+}
+
+.cell-down-answered{
+	background: $cellanswered;
+}
+
 .cell-legend{
 	text-align:center;
 	width: 600x;

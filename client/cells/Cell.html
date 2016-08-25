@@ -1,13 +1,12 @@
 <template name="Cell">
-	<link href="/c3/c3.css" rel="stylesheet" type="text/css">
-	<script src="/c3/d3.v3.min.js" charset="utf-8"></script>
-	<script src="/c3/c3.min.js"></script>
-	<script src="/c3/chart.js"></script>
-	<div class="billboard">
+	{{#if Template.subscriptionsReady}}
+	<div class="billboard cell-title {{#if cell.down}}cell-down{{/if}}{{#if cell.answered}}-answered{{/if}}">
 		<h2>{{cell.name}}</h2>
 	</div>
-	<div id="chart" class="graph">
-		
+	{{> c3 chartData}}
+	{{else}}
+	<div class="billboard">
+		<h2>Loading...</h2>
 	</div>
-	Down: {{cell.down}}, Answered: {{cell.answered}}
+	{{/if}}
 </template>
