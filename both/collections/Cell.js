@@ -18,7 +18,7 @@ CellSchema = new SimpleSchema({
 		type: String,
 		label: "Cell Name"
 	},
-	down:{
+	fault:{
 		type:Boolean,
 		label: "Cell Down"
 	},

@@ -17,6 +17,7 @@ blaze@2.1.8
 blaze-html-templates@1.0.4
 blaze-tools@1.0.9
 boilerplate-generator@1.0.9
+bshamblen:json-simple-schema@0.1.2
 caching-compiler@1.1.7
 caching-html-compiler@1.0.6
 callback-hook@1.0.9
@@ -37,6 +38,7 @@ email@1.1.17
 es5-shim@4.6.14
 fastclick@1.0.12
 fortawesome:fontawesome@4.5.0
+fourquet:tedious@1.13.1_1
 fourseven:scss@3.8.1
 geojson-utils@1.0.9
 gorillastack:c3@0.4.12
