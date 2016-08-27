@@ -17,7 +17,6 @@ blaze@2.1.8
 blaze-html-templates@1.0.4
 blaze-tools@1.0.9
 boilerplate-generator@1.0.9
-bshamblen:json-simple-schema@0.1.2
 caching-compiler@1.1.7
 caching-html-compiler@1.0.6
 callback-hook@1.0.9

@@ -1,67 +1,26 @@
 {
 	"private":{
-		"databases":[
-			{
-				"type":"mssql",
-				"config":{
-					"userName": "ReadOnlyUser",
-					"password": "Test",
-					"server":"Test",
-					"options":{
-						"encrypt": false,
-						"database": "Test"
-					}
+		"database":{
+			"config":{
+				"userName": "User",
+				"password": "Password",
+				"server":"server",
+				"options":{
+					"encrypt": false,
+					"database": "database"
 				}
 			}
-		],
-		"cells":{
-			"schema":{
-				"name":{
-					"type": "string",
-					"label": "Cell Name"
-				},
-				"fault":{
-					"type":"boolean",
-					"label": "Cell Down"
-				},
-				"answered":{
-					"type":"boolean",
-					"label": "Call Answered"
-				}
-			},
-			"array":[
-				{
-					"name":"L3E",
-					"query":""
-				}
-			]
 		},
-		"utilities":{
-			"schema":{
-				"name":{
-					"type": "string",
-					"label": "Utility Name"
-				},
-				"fault":{
-					"type":"boolean",
-					"label": "Utility Down"
-				}
-			},
-			"array":[
-				{
-					"name":"Electrical",
-					"fault": false
-				},
-				{
-					"name":"Water",
-					"fault": false
-				},
-				{
-					"name":"Air",
-					"fault": false
-				}
-			]
-		}
+		"cells":[
+			"L3E",
+			"C3O",
+			"R3H"
+		],
+		"utilities":[
+			"Electrical",
+			"Water",
+			"Air"
+		]
 	},
 	"public": {
 		"plantLayout":{

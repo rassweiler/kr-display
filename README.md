@@ -16,23 +16,25 @@ This project uses the red alert font for the logo and Raleway font for the pages
 {
 	"private":{
 		"database":{
-			"type":"mssql",
-			"username": "Test",
-			"password": "test",
-			"server":"192.168.0.2",
-			"options":{
-				"encrypt": false
+			"config":{
+				"userName": "User",
+				"password": "Password",
+				"server":"server",
+				"options":{
+					"encrypt": false,
+					"database": "database"
+				}
 			}
 		},
 		"cells":[
-			{
-				"name":"R3H"
-			}
+			"L3E",
+			"C3O",
+			"R3H"
 		],
 		"utilities":[
-			{
-				"name":"Electrical"
-			}
+			"Electrical",
+			"Water",
+			"Air"
 		]
 	},
 	"public": {
@@ -58,8 +60,8 @@ This project uses the red alert font for the logo and Raleway font for the pages
   "partsMade": 90,
   "partsTarget": 120,
   "gap":{
-    "valueY":[21,33,-1,-32,-4],
-    "valueX":["2016-07-11 00:00:00","2016-07-11 00:01:00","2016-07-11 00:02:00","2016-07-11 00:03:00","2016-07-11 00:04:00"]
+	"valueY":[21,33,-1,-32,-4],
+	"valueX":["2016-07-11 00:00:00","2016-07-11 00:01:00","2016-07-11 00:02:00","2016-07-11 00:03:00","2016-07-11 00:04:00"]
   }
 }
 ```
@@ -72,3 +74,8 @@ This project uses the red alert font for the logo and Raleway font for the pages
   "fault": true
 }
 ```
+
+## Setup
+- Modify settings.json for your needs
+- run meteor --settings settings.json to test on port 3000
+- Program will auto populate cells and utilities
