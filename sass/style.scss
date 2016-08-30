@@ -77,7 +77,6 @@ input[type="password"] {
 
 .header {
 	background: $navbg;
-	border-bottom: 1px solid $dgrey;
 	color: $text;
 	position: relative;
 	z-index: 10;
@@ -87,7 +86,8 @@ input[type="password"] {
 	justify-content: space-between;
 	@include card(1);
 	a {
-		color: $text;
+		color: $navtext;
+		font-weight: bolder;
 	}
 	.site-title {
 		line-height: 0;
@@ -121,6 +121,12 @@ input[type="password"] {
 	a {
 		text-decoration: none;
 		border-bottom: 2px solid transparent;
+	}
+	@media screen and (max-width: $small) {
+		font-size: 0.8em;
+		li + li {
+			margin-left: 15px;
+		}
 	}
 }
 
@@ -276,31 +282,6 @@ input, select, textarea{
 	}
 }
 
-.autoform-remove-item.btn{
-	background: light-grey;
-	box-shadow: none;
-	border: none;
-	border-radius: 50%;
-	font-size: 1em;
-	height: 25px;
-	width: 25px;
-	text-align: center;
-	display: block;
-	padding: 0;
-}
- 
-.autoform-add-item.btn{
-	width: 100%;
-	border-radius: 0;
-	border: none;
-	box-shadow: none;
-	background: light-grey;
-}	 
- 
-.autoform-remove-item-wrap{
-	vertical-align: middle;
-}
-
 .fa-close{
 	cursor: pointer;
 	&:hover{
@@ -349,7 +330,7 @@ input, select, textarea{
 			border-radius: 5px;
 			font-weight: bolder;
 			font-size: 2.5vh;
-			@include card(3);
+			@include card(1);
 			text-align: center;
 			margin-left: 1vh;
 			vertical-align: middle;
@@ -442,9 +423,8 @@ input, select, textarea{
 
 .cell-legend{
 	text-align:center;
-	width: 600x;
-	margin: 20px;
-
+	background-color: $navbg + 100;
+	@include card(1);
 	ul {
 		list-style: none;
 		display:flex;
@@ -471,8 +451,11 @@ input, select, textarea{
 		border-style:solid;
 		border-color: $statusanswered - 20;
 	}
-	@media screen and (max-width: $small) {
-		margin:0;
+	.cell-legend-list{
+		width: 360px;
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 }
 
@@ -480,5 +463,24 @@ input, select, textarea{
 	width: 100%;
 	svg{
 		width:100%;
+	}
+}
+
+.license{
+	margin: 20px;
+	padding-left: 30px;
+	padding-right: 30px;
+	h3, h4{
+		text-align:center;
+	}
+	a{
+		text-decoration: none;
+		font-weight: bolder;
+		color: $navbg;
+	}
+	@media screen and (max-width: $small) {
+		margin: 10px;
+		padding-left: 5px;
+		padding-right: 5px;
 	}
 }

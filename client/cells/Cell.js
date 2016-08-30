@@ -15,62 +15,67 @@ Template.Cell.helpers({
 		var id = FlowRouter.getParam('_id');
 		var cell = Cell.findOne({_id:id});
 		var valueX = cell.gap.valueX;
-		var l = valueX.length;
-		for(var i = 0; i < l; ++i){
-			var d = Date.parse(valueX[i]);
-			valueX[i] = d;
-		}
-		valueX.unshift('valueX');
-		var positive = ['positive'];
-		var negative = ['negative'];
-		for(val in cell.gap.valueY){
-			if(cell.gap.valueY[val] > 0){
-				positive.push(cell.gap.valueY[val]);
-				negative.push(0);
-			}else{
-				positive.push(0);
-				negative.push(cell.gap.valueY[val]);
+		console.log(valueX);
+		if(valueX){
+			var l = valueX.length;
+			for(var i = 0; i < l; ++i){
+				var d = Date.parse(valueX[i]);
+				valueX[i] = d;
 			}
-		}
-		var a = {
-			size: {
-				height: 250
-			},
-			padding: {
-				right: 110
-			},
-			data: {
-			  x:'valueX',
-			  columns: [
-				valueX,
-				positive,
-				negative
-			  ],
-			  type: 'area-step',
-			  colors: {
-					'positive': '#0000ff',
-					'negative': '#ff0000'
+			valueX.unshift('valueX');
+			var positive = ['positive'];
+			var negative = ['negative'];
+			for(val in cell.gap.valueY){
+				if(cell.gap.valueY[val] > 0){
+					positive.push(cell.gap.valueY[val]);
+					negative.push(0);
+				}else{
+					positive.push(0);
+					negative.push(cell.gap.valueY[val]);
 				}
-			},
-			axis:{
-			  x:{
-				type:'timeseries',
-				tick:{
-				  format:'%H:%M'
-				}
-			  },
-			  y:{
-				max:60,
-				min:-60
-			  }
-			},
-			legend: {
-				show: false
-			},
-			tooltip: {
-				show: false
 			}
-		};
-		return a;
+			var a = {
+				size: {
+					height: 200
+				},
+				padding: {
+					right: 5
+				},
+				data: {
+				  x:'valueX',
+				  columns: [
+					valueX,
+					positive,
+					negative
+				  ],
+				  type: 'area-step',
+				  colors: {
+						'positive': '#0000ff',
+						'negative': '#ff0000'
+					}
+				},
+				axis:{
+				  x:{
+					type:'timeseries',
+					tick:{
+					  format:'%H:%M'
+					}
+				  },
+				  y:{
+					max:60,
+					min:-60
+				  }
+				},
+				legend: {
+					show: false
+				},
+				tooltip: {
+					show: false
+				}
+			};
+			return a;
+		}else{
+			return null;
+		}
 	}
 });

@@ -51,8 +51,11 @@ This project uses the red alert font for the logo and Raleway font for the pages
 {
   "_id": "ghnDPRwKbAyWbGbbG",
   "name": "Cell001",
-  "down": true,
+  "fault": true,
   "answered": false,
+  "downtime":0,
+  "totalDown": 0,
+  "autoRunning": true,
   "lastCT": 100,
   "targetCT": 110,
   "bestCT": 90,

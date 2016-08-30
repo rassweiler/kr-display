@@ -30,7 +30,7 @@ Meteor.startup(() => {
 			});
 		}
 	}
-	// Remove deleted utilities
+	// Remove deleted cells
 	var cellList = Meteor.settings.private.cells;
 	var cells = Cell.find({});
 	var remove = [];
@@ -47,7 +47,7 @@ Meteor.startup(() => {
 		}
 	});
 	Cell.remove({'name':{'$in':remove}});
-	// Add missing utilities
+	// Add missing cells
 	for(val in cellList){
 		cell = Cell.findOne({name:cellList[val]});
 		if(!cell){
@@ -63,13 +63,13 @@ Meteor.startup(() => {
 	var connection = new Connection(config);
 	connection.on('connect', function (err) {
 		if (err) return console.error(err);
-		var request = new Tedious.Request('SELECT TOP 1 FromPLC, ShiftName, ProductionDate FROM dbo.ProductionResultFromPLC', function (err, rowCount) {
+		var request = new Tedious.Request("SELECT FromPLC, ShiftName, ProductionDate FROM dbo.ProductionResultFromPLC WHERE ShiftName = 'A'", function (err, rowCount) {
 			if (err) {
 				console.log(err);
 			}
 		});
 		request.on('row', function (columns) {
-			//console.log(columns);
+			console.log(columns);
 			/*
 			var r = '';
 			columns.forEach(function (column) {
@@ -77,9 +77,10 @@ Meteor.startup(() => {
 			});
 			console.log('\n ', r);
 			*/
+			// "select CycleVariance, DateTime from dbo.ProductionResultFromPLC WHERE DateTime < CURRENT_TIMESTAMP AND DateTime > DateADD(hh, -3, CURRENT_TIMESTAMP)"
+			console.log(Date());
 		});
 
 		connection.execSql(request);
 	});
-	console.log(Date());
 });

@@ -3,7 +3,9 @@
 	<div class="billboard cell-title {{#if cell.down}}cell-down{{/if}}{{#if cell.answered}}-answered{{/if}}">
 		<h2>{{cell.name}}</h2>
 	</div>
+	{{#if chartData}}
 	{{> c3 chartData}}
+	{{/if}}
 	{{else}}
 	<div class="billboard">
 		<h2>Loading...</h2>

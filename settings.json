@@ -4,10 +4,10 @@
 			"config":{
 				"userName": "User",
 				"password": "Password",
-				"server":"server",
+				"server":"Server",
 				"options":{
 					"encrypt": false,
-					"database": "database"
+					"database": "Database"
 				}
 			}
 		},

@@ -6,6 +6,14 @@ FlowRouter.route('/', {
     }
 });
 
+// About Page
+FlowRouter.route('/about', {
+    name: 'about',
+    action() {
+        BlazeLayout.render("MainLayout", {main: "About"}); //(Layout File, {main: partial file})
+    }
+});
+
 var cellRoutes = FlowRouter.group({
 	prefix: '/cells',
 	name:'cells'
