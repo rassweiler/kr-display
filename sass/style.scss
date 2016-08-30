@@ -93,6 +93,9 @@ input[type="password"] {
 		line-height: 0;
 		margin: 0;
 	}
+	@media screen and (max-width: $small) {
+		height: $headerheightM;
+	}
 }
 
 .site-title{
@@ -291,7 +294,7 @@ input, select, textarea{
 
 .plant-info{
 	width:auto;
-	height:30vh;
+	height:300px;
 	border-radius: 5px;
 	padding: 7px;
 	margin-top: 10px;
@@ -301,7 +304,7 @@ input, select, textarea{
 	left: 50%;
 	transform: translateX(-50%);
 	@media screen and (max-width: $small) {
-		height:18vh;
+		height:200px;
 	}
 	.plant-layout{
 		height:100%;
@@ -319,29 +322,29 @@ input, select, textarea{
 	}
 	.utilities {
 		display: inline-block;
-		height:60%;
-		position: relative;
-		top: 50%;
-		transform: translateY(-50%);
+		height:90%;
 		.utility {
-			width: 12vh;
-			height: 100%;
-			display: inline-block;
+			width: 12vw;
+			height: 60px;
+			display:block;
 			border-radius: 5px;
 			font-weight: bolder;
-			font-size: 2.5vh;
+			font-size: 1.2em;
 			@include card(1);
 			text-align: center;
-			margin-left: 1vh;
+			margin-left: 20px;
+			margin-top: 22px;
 			vertical-align: middle;
 			@media screen and (max-width: $small) {
-				width:7vh;
-				font-size: 1.5vh;
+				width: 15vw;
+				height: 30px;
+				font-size: 1em;
+				margin-top: 5px;
 			}
 			span{
 				text-align: center;
 				position: relative;
-				top: 45%;
+				top: 40%;
 				transform: translateY(-50%);
 			}
 		}

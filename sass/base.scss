@@ -94,6 +94,7 @@ $nav: $dblue;
 
 $cellbg: #b3ffc3;
 $headerheight: 50px;
+$headerheightM: 75px;
 $statusdown: #de4f4f;
 $statusup: #48de48;
 $statusanswered: #c77012;
@@ -101,6 +102,6 @@ $cellup: #c5f5dd;
 $celldown: #f5c5c5;
 $cellanswered: #f5ddc5;
 
-$small: 720px;
+$small: 765px;
 
 @include fontFace(Raleway, fonts/Raleway-Regular);
