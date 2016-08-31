@@ -3,6 +3,7 @@ Template.Home.onCreated(function(){
 	self.autorun(function(){
 		self.subscribe('cells');
 		self.subscribe('utilities');
+		self.subscribe('allJobs');
 	});
 });
 

@@ -377,6 +377,9 @@ input, select, textarea{
 		background: $cellbg;
 		display: inline-block;
 		@include card(1);
+		&:hover{
+			background: $grey;
+		}
 		span {
 			line-height:60px;
 		}
@@ -408,6 +411,9 @@ input, select, textarea{
 			text-decoration: none;
 			text-align: center;
 			color: $black;
+			&:hover{
+				background: $grey;
+			}
 		}
 	}
 }

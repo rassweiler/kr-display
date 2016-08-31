@@ -17,9 +17,11 @@
 			<div class="plant-cells">
 				{{#if cells}}
 					{{#each cells}}
+					<a href="/cells/{{_id}}" class="cell-link">
 						<div class="cell status-{{#if down}}down{{/if}}{{#if answered}}answered{{/if}}">
 							<span>{{name}}</span>
 						</div>
+					</a>
 					{{/each}}
 				{{else}}
 					<h4>

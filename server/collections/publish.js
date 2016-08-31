@@ -14,3 +14,7 @@ Meteor.publish('groups', function(){
 Meteor.publish('utilities', function(){
 	return Utility.find();
 });
+
+Meteor.publish('allJobs', function () {
+	return Jobs.find({});
+});
