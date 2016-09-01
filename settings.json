@@ -2,12 +2,12 @@
 	"private":{
 		"database":{
 			"config":{
-				"userName": "ReadOnlyUser",
-				"password": "ReadOnlyUser",
-				"server":"FIO-DB03",
+				"userName": "User",
+				"password": "Password",
+				"server":"Server",
 				"options":{
 					"encrypt": false,
-					"database": "FIOLegacyIntegration",
+					"database": "Database",
 					"useColumnNames": true
 				}
 			}

@@ -3,12 +3,10 @@ Meteor app for displaying scada data from mssql server.
 
 Created by Kyle Rassweiler
 
-## Screenshots
-![Plant Overview](public/Docs/Sample001.png)
-![Cell List](public/Docs/Sample002.png)
-![Cell Running](public/Docs/Sample003.png)
-![Cell Faulted](public/Docs/Sample004.png)
-![Cell Answered](public/Docs/Sample005.png)
+## Setup
+- Modify settings.json for your needs
+- run meteor --settings settings.json to test on port 3000
+- Program will auto populate cells and utilities based on values in settings.json
 
 ## Settings Example
 ```json
@@ -77,7 +75,14 @@ Created by Kyle Rassweiler
 }
 ```
 
-## Setup
-- Modify settings.json for your needs
-- run meteor --settings settings.json to test on port 3000
-- Program will auto populate cells and utilities based on values in settings.json
+## Screenshots
+### Home
+![Plant Overview](public/Docs/Sample001.png)
+### Cell List
+![Cell List](public/Docs/Sample002.png)
+### Running Cell
+![Cell Running](public/Docs/Sample003.png)
+### Faulted Cell
+![Cell Faulted](public/Docs/Sample004.png)
+### Answered Cell
+![Cell Answered](public/Docs/Sample005.png)
