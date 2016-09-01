@@ -1,11 +1,35 @@
 <template name="Cell">
 	{{#if Template.subscriptionsReady}}
-	<div class="billboard cell-title {{#if cell.down}}cell-down{{/if}}{{#if cell.answered}}-answered{{/if}}">
+	<div class="billboard cell-title {{#if cell.fault}}cell-down{{/if}}{{#if cell.answered}}-answered{{/if}}">
 		<h2>{{cell.name}}</h2>
 	</div>
+	<div class="charts">
 	{{#if chartData}}
-	{{> c3 chartData}}
+	{{> c3 data=chartData id="chart1"}}
 	{{/if}}
+	{{#if chartData2}}
+	{{> c3 data=chartData2 id="chart2"}}
+	{{/if}}
+	</div>
+	<div class="cell-data">
+		<div class="downtime">
+			<p class="title">Downtime</p>
+			<p>Current: {{cell.downtime}}</p>
+			<p>Total: {{cell.totalDown}}</p>
+		</div>
+		<div class="cycle-time">
+			<p class="title">Cycle Time</p>
+			<p>Target: {{cell.targetCT}}s</p>
+			<p>Last: {{cell.lastCT}}s</p>
+			<p>Best: {{cell.bestCT}}s</p>
+			<p>Average: {{cell.averageCT}}s</p>
+		</div>
+		<div class="parts">
+			<p class="title">Parts</p>
+			<p>Made: {{cell.partsMade}}</p>
+			<p>Target: {{cell.partsTarget}}</p>
+		</div>
+	</div>
 	{{else}}
 	<div class="billboard">
 		<h2>Loading...</h2>

@@ -4,12 +4,11 @@ Meteor app for displaying scada data from mssql server.
 Created by Kyle Rassweiler
 
 ## Screenshots
-![Screen001](public/Docs/Sample001.png)
-![Screen002](public/Docs/Sample002.png)
-![Screen003](public/Docs/Sample003.png)
-
-## Fonts
-This project uses the red alert font for the logo and Raleway font for the pages.
+![Plant Overview](public/Docs/Sample001.png)
+![Cell List](public/Docs/Sample002.png)
+![Cell Running](public/Docs/Sample003.png)
+![Cell Faulted](public/Docs/Sample004.png)
+![Cell Answered](public/Docs/Sample005.png)
 
 ## Settings Example
 ```json
@@ -22,7 +21,7 @@ This project uses the red alert font for the logo and Raleway font for the pages
 				"server":"server",
 				"options":{
 					"encrypt": false,
-					"database": "database"
+					"database": "Database"
 				}
 			}
 		},
@@ -39,7 +38,7 @@ This project uses the red alert font for the logo and Raleway font for the pages
 	},
 	"public": {
 		"plantLayout":{
-			"alt":"Test Image",
+			"alt":"Plant Layout",
 			"src": "/img/PlantLayout.png"
 		}
 	}
@@ -55,7 +54,7 @@ This project uses the red alert font for the logo and Raleway font for the pages
   "answered": false,
   "downtime":0,
   "totalDown": 0,
-  "autoRunning": true,
+  "autoRunning": [0,0,1,1,1,1,0,0,0,0,0,1,1,1,0],
   "lastCT": 100,
   "targetCT": 110,
   "bestCT": 90,
@@ -63,8 +62,8 @@ This project uses the red alert font for the logo and Raleway font for the pages
   "partsMade": 90,
   "partsTarget": 120,
   "gap":{
-	"valueY":[21,33,-1,-32,-4],
-	"valueX":["2016-07-11 00:00:00","2016-07-11 00:01:00","2016-07-11 00:02:00","2016-07-11 00:03:00","2016-07-11 00:04:00"]
+	"valueY":[21,33,-1,-32,-4, -7,-1,5,12,12,12,1,14,-3,-15],
+	"valueX":["2016-07-11 00:00:00","2016-07-11 00:01:00","2016-07-11 00:02:00","2016-07-11 00:03:00","2016-07-11 00:04:00","2016-07-11 00:05:00","2016-07-11 00:06:00","2016-07-11 00:07:00","2016-07-11 00:08:00","2016-07-11 00:09:00","2016-07-11 00:10:00","2016-07-11 00:11:00","2016-07-11 00:12:00","2016-07-11 00:13:00","2016-07-11 00:14:00"]
   }
 }
 ```
@@ -81,4 +80,4 @@ This project uses the red alert font for the logo and Raleway font for the pages
 ## Setup
 - Modify settings.json for your needs
 - run meteor --settings settings.json to test on port 3000
-- Program will auto populate cells and utilities
+- Program will auto populate cells and utilities based on values in settings.json

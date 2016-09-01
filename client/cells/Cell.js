@@ -15,7 +15,6 @@ Template.Cell.helpers({
 		var id = FlowRouter.getParam('_id');
 		var cell = Cell.findOne({_id:id});
 		var valueX = cell.gap.valueX;
-		console.log(valueX);
 		if(valueX){
 			var l = valueX.length;
 			for(var i = 0; i < l; ++i){
@@ -39,7 +38,10 @@ Template.Cell.helpers({
 					height: 200
 				},
 				padding: {
-					right: 5
+					right: 20
+				},
+				title:{
+					text:'Cycle Time Variance'
 				},
 				data: {
 				  x:'valueX',
@@ -57,13 +59,86 @@ Template.Cell.helpers({
 				axis:{
 				  x:{
 					type:'timeseries',
+					label:'Time',
+					padding: {left:0, right:0},
 					tick:{
 					  format:'%H:%M'
 					}
 				  },
 				  y:{
 					max:60,
-					min:-60
+					min:-60,
+					label:'Seconds',
+					padding: {top:0, bottom:0},
+					tick: {
+						count: 7
+					}
+				  }
+				},
+				legend: {
+					show: false
+				},
+				tooltip: {
+					show: false
+				}
+			};
+			return a;
+		}else{
+			return null;
+		}
+	},
+	chartData2:()=>{
+		var id = FlowRouter.getParam('_id');
+		var cell = Cell.findOne({_id:id});
+		var valueX2 = cell.gap.valueX;
+		console.log(valueX2);
+		if(valueX2){
+			var l = valueX2.length;
+			for(var i = 0; i < l; ++i){
+				var d = Date.parse(valueX2[i]);
+				valueX2[i] = d;
+			}
+			valueX2.unshift('valueX2');
+			var valueY2 = cell.autoRunning;
+			valueY2.unshift('valueY2');
+			var a = {
+				size: {
+					height: 100
+				},
+				padding: {
+					right: 20
+				},
+				title:{
+					text:'Auto Running'
+				},
+				data: {
+				  x:'valueX2',
+				  columns: [
+					valueX2,
+					valueY2
+				  ],
+				  type: 'area-step',
+				  colors: {
+						'valueY2': '#00ff00'
+					}
+				},
+				axis:{
+				  x:{
+					type:'timeseries',
+					label:'Time',
+					padding: {left:0, right:0},
+					tick:{
+					  format:'%H:%M'
+					}
+				  },
+				  y:{
+					max:1,
+					min:0,
+					label:'Running',
+					padding: {top:0, bottom:0},
+					tick: {
+						count: 2
+					}
 				  }
 				},
 				legend: {

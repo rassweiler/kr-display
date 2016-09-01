@@ -382,6 +382,7 @@ input, select, textarea{
 		}
 		span {
 			line-height:60px;
+			font-weight: bolder;
 		}
 	}
 	.cell2{
@@ -398,6 +399,7 @@ input, select, textarea{
 		}
 		span {
 			line-height:80px;
+			font-weight: bolder;
 		}
 	}
 	.status-down{
@@ -443,22 +445,17 @@ input, select, textarea{
 	}
 	li{
 		border-radius: 5px;
+		padding: 3px;
 		display:flex;
 	}
 	.running{
 		background: $cellbg;
-		border-style:solid;
-		border-color: $cellbg - 20;
 	}
 	.down{
 		background: $statusdown;
-		border-style:solid;
-		border-color: $statusdown - 20;
 	}
 	.answered{
 		background: $statusanswered;
-		border-style:solid;
-		border-color: $statusanswered - 20;
 	}
 	.cell-legend-list{
 		width: 360px;
@@ -468,10 +465,36 @@ input, select, textarea{
 	}
 }
 
-#chart{
+.cell-data{
+	width:100%;
+	text-align:center;
+	div{
+		padding-left: 15px;
+		padding-right: 15px;
+		border-radius: 10px;
+		margin: 15px;
+		display: inline-block;
+		@include card(2);
+		@media screen and (max-width: $small) {
+			padding-left: 5px;
+			padding-right: 5px;
+			border-radius: 10px;
+			margin: 5px;
+		}
+	}
+	.title{
+		font-weight: bolder;
+	}
+}
+
+.charts{
 	width: 100%;
-	svg{
-		width:100%;
+	@include card(1);
+	#chart1, #chart2{
+		width: 100%;
+		svg{
+			width:100%;
+		}
 	}
 }
 

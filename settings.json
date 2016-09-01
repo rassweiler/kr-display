@@ -2,12 +2,12 @@
 	"private":{
 		"database":{
 			"config":{
-				"userName": "User",
-				"password": "Password",
-				"server":"Server",
+				"userName": "ReadOnlyUser",
+				"password": "ReadOnlyUser",
+				"server":"FIO-DB03",
 				"options":{
 					"encrypt": false,
-					"database": "Database",
+					"database": "FIOLegacyIntegration",
 					"useColumnNames": true
 				}
 			}
@@ -15,7 +15,10 @@
 		"cells":[
 			"L3E",
 			"C3O",
-			"R3H"
+			"R3H",
+			"C2B",
+			"A1C",
+			"B2A"
 		],
 		"utilities":[
 			"Electrical",
