@@ -29,7 +29,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="301.39469"
+     inkscape:cx="68.554528"
      inkscape:cy="148.29435"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -72,7 +72,7 @@
        ry="74.530167" />
     <g
        id="g4746"
-       transform="matrix(0.8636143,0,0,0.8636143,-23.430193,88.508565)"
+       transform="matrix(0.8636143,0,0,0.8636143,-23.430193,88.508568)"
        style="fill:#ffffff;fill-opacity:1;stroke:none">
       <g
          style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -121,15 +121,15 @@
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:semi-condensed;font-size:250px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans Bold Semi-Condensed'">K</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:0.67405063;"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:0.6740506"
        x="-19.800699"
-       y="663.43433"
+       y="618.52051"
        id="text4758"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4760"
          x="-19.800699"
-         y="663.43433"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:semi-condensed;font-size:125px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans Bold Semi-Condensed';fill:#ffffff;fill-opacity:1;stroke:none;stroke-opacity:0.67405063;stroke-linejoin:round;">Display</tspan></text>
+         y="618.52051"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:semi-condensed;font-size:125px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans Bold Semi-Condensed';fill:#ffffff;fill-opacity:1;stroke:none;stroke-linejoin:round;stroke-opacity:0.6740506">Display</tspan></text>
   </g>
 </svg>
