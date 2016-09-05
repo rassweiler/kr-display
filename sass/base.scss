@@ -84,6 +84,7 @@ $black: #27272b;
 $navbg: #0b1739;
 $navhover: #BDBED7;
 $navtext: #ededf3;
+$navheight: 50px;
 
 
 // Interface Colors
@@ -93,7 +94,7 @@ $accent: $blue;
 $nav: $dblue;
 
 $cellbg: #b3ffc3;
-$headerheight: 50px;
+$headerheight: $navheight;
 $headerheightM: 75px;
 $statusdown: #de4f4f;
 $statusup: #48de48;
