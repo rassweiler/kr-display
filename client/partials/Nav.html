@@ -1,6 +1,9 @@
 <template name="Nav">
     <nav class="nav">
-        <ul>
+    	<div class="menu-drop">
+    		<i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+    	</div>
+        <ul class="{{#if $.Session.get 'showMenu'}}show-menu{{/if}}">
             <li><a href="/">Plant Overview</a></li>
             <li><a href="/cells/">Cells</a></li>
             <li><a href="/about">About</a></li>

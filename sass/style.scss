@@ -93,9 +93,6 @@ input[type="password"] {
 		line-height: 0;
 		margin: 0;
 	}
-	@media screen and (max-width: $small) {
-		height: $headerheightM;
-	}
 }
 
 .site-title{
@@ -116,6 +113,7 @@ input[type="password"] {
 	li{
 		&:hover{
 			background: $navhover;
+			border-radius: 2px;
 		}
 	}
 	li + li {
@@ -124,11 +122,46 @@ input[type="password"] {
 	a {
 		text-decoration: none;
 		border-bottom: 2px solid transparent;
+		&:hover{
+			color:$navbg;
+		}
+	}
+	.menu-drop{
+		color: $navtext;
+		cursor: pointer;
+		margin-top: 5px;
+	}
+	select, .menu-drop {
+		display: none;
 	}
 	@media screen and (max-width: $small) {
 		font-size: 0.8em;
 		li + li {
 			margin-left: 15px;
+		}
+		ul{
+			display:none;
+		}
+		select{
+			display:inline-block;
+		}
+		.menu-drop{
+			display:inline-block;
+			float: right;
+		}
+		.show-menu{
+			display:block;
+			background: $navbg;
+			margin-top: $navheight - 10px;
+			width: 100%;
+			padding: 10px;
+			li{
+				width: 100%;
+				padding: 5px;
+			}
+			li + li {
+				margin:0;
+			}
 		}
 	}
 }
