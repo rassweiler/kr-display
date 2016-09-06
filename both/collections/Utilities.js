@@ -20,8 +20,7 @@ UtilitySchema = new SimpleSchema({
 	},
 	fault:{
 		type:Boolean,
-		label: "Fault",
-		optional: true
+		label: "Fault"
 	}
 });
 Utility.attachSchema(UtilitySchema);

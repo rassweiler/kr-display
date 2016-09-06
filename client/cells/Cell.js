@@ -14,23 +14,23 @@ Template.Cell.helpers({
 	chartData:()=>{
 		var id = FlowRouter.getParam('_id');
 		var cell = Cell.findOne({_id:id});
-		var valueX = cell.gap.valueX;
-		if(valueX){
-			var l = valueX.length;
+		var timeStamp = cell.timeStamp;
+		if(timeStamp.length > 0){
+			var l = timeStamp.length;
 			for(var i = 0; i < l; ++i){
-				var d = Date.parse(valueX[i]);
-				valueX[i] = d;
+				var d = Date.parse(timeStamp[i]);
+				timeStamp[i] = d;
 			}
-			valueX.unshift('valueX');
+			timeStamp.unshift('timeStamp');
 			var positive = ['positive'];
 			var negative = ['negative'];
-			for(val in cell.gap.valueY){
-				if(cell.gap.valueY[val] > 0){
-					positive.push(cell.gap.valueY[val]);
+			for(val in cell.cycleVariance){
+				if(cell.cycleVariance[val] > 0){
+					positive.push(cell.cycleVariance[val]);
 					negative.push(0);
 				}else{
 					positive.push(0);
-					negative.push(cell.gap.valueY[val]);
+					negative.push(cell.cycleVariance[val]);
 				}
 			}
 			var a = {
@@ -44,9 +44,9 @@ Template.Cell.helpers({
 					text:'Cycle Time Variance'
 				},
 				data: {
-				  x:'valueX',
+				  x:'timeStamp',
 				  columns: [
-					valueX,
+					timeStamp,
 					positive,
 					negative
 				  ],
@@ -90,17 +90,16 @@ Template.Cell.helpers({
 	chartData2:()=>{
 		var id = FlowRouter.getParam('_id');
 		var cell = Cell.findOne({_id:id});
-		var valueX2 = cell.gap.valueX;
-		console.log(valueX2);
-		if(valueX2){
-			var l = valueX2.length;
+		var timeStamp = cell.timeStamp;
+		if(timeStamp.length > 0){
+			var l = timeStamp.length;
 			for(var i = 0; i < l; ++i){
-				var d = Date.parse(valueX2[i]);
-				valueX2[i] = d;
+				var d = Date.parse(timeStamp[i]);
+				timeStamp[i] = d;
 			}
-			valueX2.unshift('valueX2');
-			var valueY2 = cell.autoRunning;
-			valueY2.unshift('valueY2');
+			timeStamp.unshift('timeStamp');
+			var autoRunning = cell.autoRunning;
+			autoRunning.unshift('autoRunning');
 			var a = {
 				size: {
 					height: 100
@@ -112,14 +111,14 @@ Template.Cell.helpers({
 					text:'Auto Running'
 				},
 				data: {
-				  x:'valueX2',
+				  x:'timeStamp',
 				  columns: [
-					valueX2,
-					valueY2
+					timeStamp,
+					autoRunning
 				  ],
 				  type: 'area-step',
 				  colors: {
-						'valueY2': '#00ff00'
+						'autoRunning': '#00ff00'
 					}
 				},
 				axis:{

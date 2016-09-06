@@ -7,6 +7,6 @@ Template.CellList.onCreated(function(){
 
 Template.CellList.helpers({
 	cells:()=>{
-		return Cell.find({});
+		return Cell.find({},{sort: {name: 1}});
 	}
 });

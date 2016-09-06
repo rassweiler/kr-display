@@ -20,53 +20,61 @@ CellSchema = new SimpleSchema({
 	},
 	fault:{
 		type:Boolean,
-		label: "Cell Down",
-		optional: true
+		label: "Cell Down"
+	},
+	downtime:{
+		type:Number,
+		label: "Downtime"
+	},
+	totalDowntime:{
+		type:Number,
+		label: "Total Downtime"
 	},
 	answered:{
 		type:Boolean,
-		label: "Call Answered",
-		optional: true
+		label: "Call Answered"
 	},
 	lastCT:{
 		type:Number,
-		label: "Last Cycle Time",
-		optional: true
+		label: "Last Cycle Time"
 	},
 	bestCT:{
 		type:Number,
-		label: "Best Cycle Time",
-		optional: true
+		label: "Best Cycle Time"
 	},
 	averageCT:{
 		type:Number,
-		label: "Average Cycle Time",
-		optional: true
+		label: "Average Cycle Time"
+	},
+	targetCT:{
+		type:Number,
+		label: "Target Cycle Time"
 	},
 	partsMade:{
 		type:Number,
-		label: "Parts Made",
-		optional: true
+		label: "Parts Made"
 	},
 	partsTarget:{
 		type:Number,
-		label: "Parts Made Target",
-		optional: true
+		label: "Parts Made Target"
 	},
-	gap:{
-		type:Object
-	},
-	'gap.$.valueX':{
+	cycleVariance:{
 		type:Array
 	},
-	'gap.$.valueX.$':{
+	'cycleVariance.$':{
 		type:Number
 	},
-	'gap.$.valueY':{
+	autoRunning:{
 		type:Array
 	},
-	'gap.$.valueY.$':{
+	'autoRunning.$':{
 		type:Number
+	},
+	timeStamp:{
+		type:Array
+	},
+	'timeStamp.$':{
+		type:Date
 	}
 });
 

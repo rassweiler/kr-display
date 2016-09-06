@@ -67,7 +67,7 @@ Meteor.startup(() => {
 	for(val in cellList){
 		cell = Cell.findOne({name:cellList[val]});
 		if(!cell){
-			Cell.insert({name: cellList[val], fault:false, answered:false,lastCT:0,bestCT:0, averageCT:0,partsMade:0,partsTarget:0, gap:{valueY:[0],valueX:[0]}}, function(error, result) {
+			Cell.insert({name: cellList[val], fault:false, answered:false, downtime:0,totalDowntime:0,lastCT:0,bestCT:0, averageCT:0, targetCT:0,partsMade:0,partsTarget:0, cycleVariance:[],autoRunning:[],timeStamp:[]}, function(error, result) {
 				if(error){
 					console.log(error);
 				}
@@ -83,7 +83,6 @@ Meteor.startup(() => {
 	connection.on('connect', function (err) {
 		if (err) return console.error(err);
 		connected = true;
-		console.log("Connected to mssql");
 		/*
 		var request = new Tedious.Request("SELECT FromPLC, ShiftName, ProductionDate FROM dbo.ProductionResultFromPLC WHERE ShiftName = 'A'", function (err, rowCount) {
 			if (err) {
@@ -107,9 +106,8 @@ Meteor.startup(() => {
 	});
 
 	cells.forEach(function(cell){
-		console.log("Create job: "+cell.name);
-		var job = new Job(Jobs, 'queryDB',{cell:cell.name});
-		job.priority('normal').retry({ retries: 5,wait: 5*1000 }).delay(5*1000).repeat({ wait: 30*1000 }).save();
+		//var job = new Job(Jobs, 'queryDB',{cell:cell.name});
+		//job.priority('normal').retry({ retries: 5,wait: 5*1000 }).delay(5*1000).repeat({ wait: 30*1000 }).save();
 	});
 
 	var workers = Jobs.processJobs('queryDB',function (job, cb) {

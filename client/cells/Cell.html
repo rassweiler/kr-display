@@ -1,5 +1,6 @@
 <template name="Cell">
 	{{#if Template.subscriptionsReady}}
+	{{#if cell}}
 	<div class="billboard cell-title {{#if cell.fault}}cell-down{{/if}}{{#if cell.answered}}-answered{{/if}}">
 		<h2>{{cell.name}}</h2>
 	</div>
@@ -14,8 +15,8 @@
 	<div class="cell-data">
 		<div class="downtime">
 			<p class="title">Downtime</p>
-			<p>Current: {{cell.downtime}}</p>
-			<p>Total: {{cell.totalDown}}</p>
+			<p>Current: {{cell.downtime}}min</p>
+			<p>Total: {{cell.totalDowntime}}min</p>
 		</div>
 		<div class="cycle-time">
 			<p class="title">Cycle Time</p>
@@ -30,6 +31,11 @@
 			<p>Target: {{cell.partsTarget}}</p>
 		</div>
 	</div>
+	{{else}}
+	<div class="billboard cell-title cell-down">
+		<h2>Error: Unable to locate cell in database!</h2>
+	</div>
+	{{/if}}
 	{{else}}
 	<div class="billboard">
 		<h2>Loading...</h2>
