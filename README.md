@@ -25,9 +25,22 @@ Created by Kyle Rassweiler
 			}
 		},
 		"cells":[
-			"L3E",
-			"C3O",
-			"R3H"
+			{
+				"name":"Test1",
+				"group":"A"
+			},
+			{
+				"name":"Test3",
+				"group":"A"
+			},
+			{
+				"name":"Test2",
+				"group":"B"
+			},
+			{
+				"name":"Test0",
+				"group":"B"
+			}
 		],
 		"utilities":[
 			"Electrical",

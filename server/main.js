@@ -53,7 +53,7 @@ Meteor.startup(() => {
 	cells.forEach(function(ut){
 		var found = false;
 		for(val in cellList){
-			if(ut.name == cellList[val]){
+			if(ut.name == cellList[val].name){
 				found = true;
 				break;
 			}
@@ -65,9 +65,9 @@ Meteor.startup(() => {
 	Cell.remove({'name':{'$in':remove}});
 	// Add missing cells
 	for(val in cellList){
-		cell = Cell.findOne({name:cellList[val]});
+		cell = Cell.findOne({name:cellList[val].name});
 		if(!cell){
-			Cell.insert({name: cellList[val], fault:false, answered:false, downtime:0,totalDowntime:0,lastCT:0,bestCT:0, averageCT:0, targetCT:0,partsMade:0,partsTarget:0, cycleVariance:[],autoRunning:[],timeStamp:[]}, function(error, result) {
+			Cell.insert({name: cellList[val].name, group: cellList[val].group, fault:false, answered:false, downtime:0,totalDowntime:0,lastCT:0,bestCT:0, averageCT:0, targetCT:0,partsMade:0,partsTarget:0, cycleVariance:[],autoRunning:[],timeStamp:[]}, function(error, result) {
 				if(error){
 					console.log(error);
 				}
@@ -113,7 +113,7 @@ Meteor.startup(() => {
 	var workers = Jobs.processJobs('queryDB',function (job, cb) {
 		console.log("Running Job: "+job.data.cell);
 		var cell = job.data.cell;
-		var query = "SELECT Cell, FromPLC, ShiftName, ProductionDate FROM dbo.ProductionResultFromPLC WHERE Cell = '"+ cell +"'";
+		var query = "SELECT Cell, FromPLC, ShiftName, ProductionDate FROM dbo.ProductionResultFromPLC WHERE Cell = '"+ cell +"' AND TimeStamp < CURRENT_TIMESTAMP AND TimeStamp > DateADD(hh, -3, CURRENT_TIMESTAMP)";
 		if(connected){
 				var request = new Tedious.Request(query, function (err, rowCount) {
 					if (err) {

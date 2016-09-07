@@ -1,22 +1,13 @@
 Cell = new Mongo.Collection('cell');
 
-//TODO: Add proper checks -----------
-Cell.allow({
-	insert: function(){
-		return true;
-	},
-	update: function(){
-		return true;
-	},
-	remove: function(){
-		return true;
-	}
-});
-
 CellSchema = new SimpleSchema({
 	name:{
 		type: String,
 		label: "Cell Name"
+	},
+	group:{
+		type: String,
+		label: "Cell Group"
 	},
 	fault:{
 		type:Boolean,
