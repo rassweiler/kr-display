@@ -93,6 +93,14 @@ input[type="password"] {
 		line-height: 0;
 		margin: 0;
 	}
+	.company-title {
+		line-height: 0;
+		margin: 15px;
+		font-size:2.5em;
+		a{
+			text-decoration: none;
+		}
+	}
 }
 
 .site-title{
@@ -100,6 +108,10 @@ input[type="password"] {
 		img{
 			max-height: $headerheight - 8;
 		}
+	}
+	h1{
+		color: $navtext;
+		font-weight: bolder; 
 	}
 }
 

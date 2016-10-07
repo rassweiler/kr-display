@@ -7,7 +7,11 @@ Created by Kyle Rassweiler
 - Create settings.json in project root with required settings, see example.
 - run the windows bat file to test on port 3000
 - Program will auto populate cells and utilities based on values in settings.json.
-- The data collection will search the database for column [CellName] or [UtilityName] based on the list of cells or utilities in the settings file.
+- The server will begin creating data collection jobs for each cell.
+- The job will query the mssql database and populate the display database.
+- The logic takes any columns not listed in the settings file and treats them as a new part ("PartName001" and "PartName001-Target").
+- The logic than sorts the parts and looks for "[partname]-Target" to set the target value of a given part.
+- This is done so that the number of parts and their names can change cell to cell.
 
 ## Settings Example
 ```json
@@ -22,6 +26,13 @@ Created by Kyle Rassweiler
 					"encrypt": false,
 					"database": "Database"
 				}
+			},
+			"table":"TestTable",
+			"nonpartcolumns":"TimeStamp Cell Zone AutoRunning AndonOn AndonAnswered TargetCycleTime BestCycleTime AverageCycleTime CycleTime CycleVariance Downtime TotalDowntime"
+		},
+		"log":{
+			"options":{
+				"path":"G:\\Path\\To\\My\\House\\Logs"
 			}
 		},
 		"cells":[
@@ -52,7 +63,8 @@ Created by Kyle Rassweiler
 		"plantLayout":{
 			"alt":"Plant Layout",
 			"src": "/img/PlantLayout.png"
-		}
+		},
+		"company":"Some Place"
 	}
 }
 ```
@@ -62,16 +74,21 @@ Created by Kyle Rassweiler
 {
 	"_id": "ghnDPRwKbAyWbGbbG",
 	"name": "Cell001",
-	"fault": true,
-	"answered": false,
+	"andonOn": true,
+	"andonAnswered": false,
 	"downtime":0,
 	"totalDowntime": 0,
 	"lastCT": 100,
 	"targetCT": 110,
 	"bestCT": 90,
 	"averageCT": 120,
-	"partsMade": 90,
-	"partsTarget": 120,
+	"parts":[
+		{
+			"Name":"PartName001",
+			"current":90,
+			"target": 110
+		}
+	],
 	"cycleVariance":[21,33,-1,-32,-4,-7,-1,5,12,12,12,1,14,-3,-15],
 	"autoRunning": [0,0,1,1,1,1,0,0,0,0,0,1,1,1,0],
 	"timeStamp":["2016-07-11 00:00:00","2016-07-11 00:01:00","2016-07-11 00:02:00","2016-07-11 00:03:00","2016-07-11 00:04:00","2016-07-11 00:05:00","2016-07-11 00:06:00","2016-07-11 00:07:00","2016-07-11 00:08:00","2016-07-11 00:09:00","2016-07-11 00:10:00","2016-07-11 00:11:00","2016-07-11 00:12:00","2016-07-11 00:13:00","2016-07-11 00:14:00"]

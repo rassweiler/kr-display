@@ -1,7 +1,7 @@
 <template name="Cell">
 	{{#if Template.subscriptionsReady}}
 	{{#if cell}}
-	<div class="billboard cell-title {{#if cell.fault}}cell-down{{/if}}{{#if cell.answered}}-answered{{/if}}">
+	<div class="billboard cell-title {{#if cell.andonOn}}cell-down{{/if}}{{#if cell.andonAnswered}}-answered{{/if}}">
 		<h2>{{cell.name}}</h2>
 	</div>
 	<div class="charts">
@@ -18,6 +18,7 @@
 			<p>Current: {{cell.downtime}}min</p>
 			<p>Total: {{cell.totalDowntime}}min</p>
 		</div>
+		{{#if hasCycleTimes}}
 		<div class="cycle-time">
 			<p class="title">Cycle Time</p>
 			<p>Target: {{cell.targetCT}}s</p>
@@ -25,11 +26,16 @@
 			<p>Best: {{cell.bestCT}}s</p>
 			<p>Average: {{cell.averageCT}}s</p>
 		</div>
+		{{/if}}
+		{{#if cell.parts}}
+		{{#each cell.parts}}
 		<div class="parts">
-			<p class="title">Parts</p>
-			<p>Made: {{cell.partsMade}}</p>
-			<p>Target: {{cell.partsTarget}}</p>
+			<p class="title">{{ name }}</p>
+			<p>Made: {{ current }}</p>
+			<p>Target: {{ target }}</p>
 		</div>
+		{{/each}}
+		{{/if}}
 	</div>
 	{{else}}
 	<div class="billboard cell-title cell-down">

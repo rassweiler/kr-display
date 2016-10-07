@@ -11,6 +11,11 @@ Template.Cell.helpers({
 		var id = FlowRouter.getParam('_id');
 		return Cell.findOne({_id:id});
 	},
+	hasCycleTimes:()=>{
+		var id = FlowRouter.getParam('_id');
+		var cell = Cell.findOne({_id:id});
+		return (cell.lastCT > 0 || cell.bestCT > 0 || cell.averageCT > 0 || cell.targetCT > 0) ? true:false
+	},
 	chartData:()=>{
 		var id = FlowRouter.getParam('_id');
 		var cell = Cell.findOne({_id:id});

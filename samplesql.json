@@ -1,0 +1,1100 @@
+{
+    "TimeStamp": {
+      "value": "2016-10-04T13:48:00.000Z",
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "DATETIMN",
+          "name": "DateTimeN",
+          "dataLengthLength": 1,
+          "id": 111
+        },
+        "colName": "TimeStamp",
+        "dataLength": 8
+      }
+    },
+    "Cell": {
+      "value": "L3E",
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BIGVARCHR",
+          "name": "VarChar",
+          "hasCollation": true,
+          "dataLengthLength": 2,
+          "maximumLength": 8000,
+          "id": 167
+        },
+        "colName": "Cell",
+        "collation": {
+          "lcid": 1033,
+          "codepage": "CP1252",
+          "flags": 208,
+          "version": 0,
+          "sortId": 52
+        },
+        "dataLength": 50
+      }
+    },
+    "Zone": {
+      "value": "C",
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BIGVARCHR",
+          "name": "VarChar",
+          "hasCollation": true,
+          "dataLengthLength": 2,
+          "maximumLength": 8000,
+          "id": 167
+        },
+        "colName": "Zone",
+        "collation": {
+          "lcid": 1033,
+          "codepage": "CP1252",
+          "flags": 208,
+          "version": 0,
+          "sortId": 52
+        },
+        "dataLength": 50
+      }
+    },
+    "AutoRunning": {
+      "value": true,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BITN",
+          "name": "BitN",
+          "dataLengthLength": 1,
+          "id": 104
+        },
+        "colName": "AutoRunning",
+        "dataLength": 1
+      }
+    },
+    "AndonOn": {
+      "value": false,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BITN",
+          "name": "BitN",
+          "dataLengthLength": 1,
+          "id": 104
+        },
+        "colName": "AndonOn",
+        "dataLength": 1
+      }
+    },
+    "AndonAnswered": {
+      "value": false,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BITN",
+          "name": "BitN",
+          "dataLengthLength": 1,
+          "id": 104
+        },
+        "colName": "AndonAnswered",
+        "dataLength": 1
+      }
+    },
+    "TargetCycleTime": {
+      "value": 100,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "TargetCycleTime",
+        "dataLength": 4
+      }
+    },
+    "BestCycleTime": {
+      "value": 87,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "BestCycleTime",
+        "dataLength": 4
+      }
+    },
+    "AverageCycleTime": {
+      "value": 110,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "AverageCycleTime",
+        "dataLength": 4
+      }
+    },
+    "CycleTime": {
+      "value": 87,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "CycleTime",
+        "dataLength": 4
+      }
+    },
+    "CycleVariance": {
+      "value": 13,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "CycleVariance",
+        "dataLength": 4
+      }
+    },
+    "PartName001": {
+      "value": 121,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName001",
+        "dataLength": 4
+      }
+    },
+    "PartName001-Target": {
+      "value": 150,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName001-Target",
+        "dataLength": 4
+      }
+    },
+    "PartName002": {
+      "value": 93,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName002",
+        "dataLength": 4
+      }
+    },
+    "PartName002-Target": {
+      "value": 100,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName002-Target",
+        "dataLength": 4
+      }
+    },
+    "PartName003": {
+      "value": 46,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName003",
+        "dataLength": 4
+      }
+    },
+    "PartName003-Target": {
+      "value": 70,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName003-Target",
+        "dataLength": 4
+      }
+    }
+  },
+  {
+    "TimeStamp": {
+      "value": "2016-10-04T13:47:00.000Z",
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "DATETIMN",
+          "name": "DateTimeN",
+          "dataLengthLength": 1,
+          "id": 111
+        },
+        "colName": "TimeStamp",
+        "dataLength": 8
+      }
+    },
+    "Cell": {
+      "value": "L3E",
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BIGVARCHR",
+          "name": "VarChar",
+          "hasCollation": true,
+          "dataLengthLength": 2,
+          "maximumLength": 8000,
+          "id": 167
+        },
+        "colName": "Cell",
+        "collation": {
+          "lcid": 1033,
+          "codepage": "CP1252",
+          "flags": 208,
+          "version": 0,
+          "sortId": 52
+        },
+        "dataLength": 50
+      }
+    },
+    "Zone": {
+      "value": "C",
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BIGVARCHR",
+          "name": "VarChar",
+          "hasCollation": true,
+          "dataLengthLength": 2,
+          "maximumLength": 8000,
+          "id": 167
+        },
+        "colName": "Zone",
+        "collation": {
+          "lcid": 1033,
+          "codepage": "CP1252",
+          "flags": 208,
+          "version": 0,
+          "sortId": 52
+        },
+        "dataLength": 50
+      }
+    },
+    "AutoRunning": {
+      "value": true,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BITN",
+          "name": "BitN",
+          "dataLengthLength": 1,
+          "id": 104
+        },
+        "colName": "AutoRunning",
+        "dataLength": 1
+      }
+    },
+    "AndonOn": {
+      "value": false,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BITN",
+          "name": "BitN",
+          "dataLengthLength": 1,
+          "id": 104
+        },
+        "colName": "AndonOn",
+        "dataLength": 1
+      }
+    },
+    "AndonAnswered": {
+      "value": false,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BITN",
+          "name": "BitN",
+          "dataLengthLength": 1,
+          "id": 104
+        },
+        "colName": "AndonAnswered",
+        "dataLength": 1
+      }
+    },
+    "TargetCycleTime": {
+      "value": 100,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "TargetCycleTime",
+        "dataLength": 4
+      }
+    },
+    "BestCycleTime": {
+      "value": 91,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "BestCycleTime",
+        "dataLength": 4
+      }
+    },
+    "AverageCycleTime": {
+      "value": 111,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "AverageCycleTime",
+        "dataLength": 4
+      }
+    },
+    "CycleTime": {
+      "value": 104,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "CycleTime",
+        "dataLength": 4
+      }
+    },
+    "CycleVariance": {
+      "value": -4,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "CycleVariance",
+        "dataLength": 4
+      }
+    },
+    "PartName001": {
+      "value": 120,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName001",
+        "dataLength": 4
+      }
+    },
+    "PartName001-Target": {
+      "value": 150,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName001-Target",
+        "dataLength": 4
+      }
+    },
+    "PartName002": {
+      "value": 92,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName002",
+        "dataLength": 4
+      }
+    },
+    "PartName002-Target": {
+      "value": 100,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName002-Target",
+        "dataLength": 4
+      }
+    },
+    "PartName003": {
+      "value": 45,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName003",
+        "dataLength": 4
+      }
+    },
+    "PartName003-Target": {
+      "value": 70,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName003-Target",
+        "dataLength": 4
+      }
+    }
+  },
+  {
+    "TimeStamp": {
+      "value": "2016-10-04T13:46:00.000Z",
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "DATETIMN",
+          "name": "DateTimeN",
+          "dataLengthLength": 1,
+          "id": 111
+        },
+        "colName": "TimeStamp",
+        "dataLength": 8
+      }
+    },
+    "Cell": {
+      "value": "L3E",
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BIGVARCHR",
+          "name": "VarChar",
+          "hasCollation": true,
+          "dataLengthLength": 2,
+          "maximumLength": 8000,
+          "id": 167
+        },
+        "colName": "Cell",
+        "collation": {
+          "lcid": 1033,
+          "codepage": "CP1252",
+          "flags": 208,
+          "version": 0,
+          "sortId": 52
+        },
+        "dataLength": 50
+      }
+    },
+    "Zone": {
+      "value": "C",
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BIGVARCHR",
+          "name": "VarChar",
+          "hasCollation": true,
+          "dataLengthLength": 2,
+          "maximumLength": 8000,
+          "id": 167
+        },
+        "colName": "Zone",
+        "collation": {
+          "lcid": 1033,
+          "codepage": "CP1252",
+          "flags": 208,
+          "version": 0,
+          "sortId": 52
+        },
+        "dataLength": 50
+      }
+    },
+    "AutoRunning": {
+      "value": false,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BITN",
+          "name": "BitN",
+          "dataLengthLength": 1,
+          "id": 104
+        },
+        "colName": "AutoRunning",
+        "dataLength": 1
+      }
+    },
+    "AndonOn": {
+      "value": true,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BITN",
+          "name": "BitN",
+          "dataLengthLength": 1,
+          "id": 104
+        },
+        "colName": "AndonOn",
+        "dataLength": 1
+      }
+    },
+    "AndonAnswered": {
+      "value": false,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BITN",
+          "name": "BitN",
+          "dataLengthLength": 1,
+          "id": 104
+        },
+        "colName": "AndonAnswered",
+        "dataLength": 1
+      }
+    },
+    "TargetCycleTime": {
+      "value": 100,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "TargetCycleTime",
+        "dataLength": 4
+      }
+    },
+    "BestCycleTime": {
+      "value": 91,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "BestCycleTime",
+        "dataLength": 4
+      }
+    },
+    "AverageCycleTime": {
+      "value": 109,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "AverageCycleTime",
+        "dataLength": 4
+      }
+    },
+    "CycleTime": {
+      "value": 100,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "CycleTime",
+        "dataLength": 4
+      }
+    },
+    "CycleVariance": {
+      "value": 0,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "CycleVariance",
+        "dataLength": 4
+      }
+    },
+    "PartName001": {
+      "value": 119,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName001",
+        "dataLength": 4
+      }
+    },
+    "PartName001-Target": {
+      "value": 150,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName001-Target",
+        "dataLength": 4
+      }
+    },
+    "PartName002": {
+      "value": 91,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName002",
+        "dataLength": 4
+      }
+    },
+    "PartName002-Target": {
+      "value": 100,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName002-Target",
+        "dataLength": 4
+      }
+    },
+    "PartName003": {
+      "value": 44,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName003",
+        "dataLength": 4
+      }
+    },
+    "PartName003-Target": {
+      "value": 70,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName003-Target",
+        "dataLength": 4
+      }
+    }
+  },
+  {
+    "TimeStamp": {
+      "value": "2016-10-04T10:46:00.000Z",
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "DATETIMN",
+          "name": "DateTimeN",
+          "dataLengthLength": 1,
+          "id": 111
+        },
+        "colName": "TimeStamp",
+        "dataLength": 8
+      }
+    },
+    "Cell": {
+      "value": "L3E",
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BIGVARCHR",
+          "name": "VarChar",
+          "hasCollation": true,
+          "dataLengthLength": 2,
+          "maximumLength": 8000,
+          "id": 167
+        },
+        "colName": "Cell",
+        "collation": {
+          "lcid": 1033,
+          "codepage": "CP1252",
+          "flags": 208,
+          "version": 0,
+          "sortId": 52
+        },
+        "dataLength": 50
+      }
+    },
+    "Zone": {
+      "value": "C",
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BIGVARCHR",
+          "name": "VarChar",
+          "hasCollation": true,
+          "dataLengthLength": 2,
+          "maximumLength": 8000,
+          "id": 167
+        },
+        "colName": "Zone",
+        "collation": {
+          "lcid": 1033,
+          "codepage": "CP1252",
+          "flags": 208,
+          "version": 0,
+          "sortId": 52
+        },
+        "dataLength": 50
+      }
+    },
+    "AutoRunning": {
+      "value": true,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BITN",
+          "name": "BitN",
+          "dataLengthLength": 1,
+          "id": 104
+        },
+        "colName": "AutoRunning",
+        "dataLength": 1
+      }
+    },
+    "AndonOn": {
+      "value": true,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BITN",
+          "name": "BitN",
+          "dataLengthLength": 1,
+          "id": 104
+        },
+        "colName": "AndonOn",
+        "dataLength": 1
+      }
+    },
+    "AndonAnswered": {
+      "value": false,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "BITN",
+          "name": "BitN",
+          "dataLengthLength": 1,
+          "id": 104
+        },
+        "colName": "AndonAnswered",
+        "dataLength": 1
+      }
+    },
+    "TargetCycleTime": {
+      "value": 100,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "TargetCycleTime",
+        "dataLength": 4
+      }
+    },
+    "BestCycleTime": {
+      "value": 99,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "BestCycleTime",
+        "dataLength": 4
+      }
+    },
+    "AverageCycleTime": {
+      "value": 114,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "AverageCycleTime",
+        "dataLength": 4
+      }
+    },
+    "CycleTime": {
+      "value": 140,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "CycleTime",
+        "dataLength": 4
+      }
+    },
+    "CycleVariance": {
+      "value": -40,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "CycleVariance",
+        "dataLength": 4
+      }
+    },
+    "PartName001": {
+      "value": 46,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName001",
+        "dataLength": 4
+      }
+    },
+    "PartName001-Target": {
+      "value": 150,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName001-Target",
+        "dataLength": 4
+      }
+    },
+    "PartName002": {
+      "value": 12,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName002",
+        "dataLength": 4
+      }
+    },
+    "PartName002-Target": {
+      "value": 100,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName002-Target",
+        "dataLength": 4
+      }
+    },
+    "PartName003": {
+      "value": 31,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName003",
+        "dataLength": 4
+      }
+    },
+    "PartName003-Target": {
+      "value": 70,
+      "metadata": {
+        "userType": 0,
+        "flags": 9,
+        "type": {
+          "type": "INTN",
+          "name": "IntN",
+          "dataLengthLength": 1,
+          "id": 38
+        },
+        "colName": "PartName003-Target",
+        "dataLength": 4
+      }
+    }
+  }

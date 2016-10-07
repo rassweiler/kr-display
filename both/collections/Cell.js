@@ -9,10 +9,6 @@ CellSchema = new SimpleSchema({
 		type: String,
 		label: "Cell Group"
 	},
-	fault:{
-		type:Boolean,
-		label: "Cell Down"
-	},
 	downtime:{
 		type:Number,
 		label: "Downtime"
@@ -21,7 +17,11 @@ CellSchema = new SimpleSchema({
 		type:Number,
 		label: "Total Downtime"
 	},
-	answered:{
+	andonOn:{
+		type:Boolean,
+		label: "Cell Down"
+	},
+	andonAnswered:{
 		type:Boolean,
 		label: "Call Answered"
 	},
@@ -41,13 +41,24 @@ CellSchema = new SimpleSchema({
 		type:Number,
 		label: "Target Cycle Time"
 	},
-	partsMade:{
-		type:Number,
-		label: "Parts Made"
+	parts:{
+		type:Array
 	},
-	partsTarget:{
+	'parts.$':{
+		type:Object,
+		optional:true
+	},
+	'parts.$.name':{
+		type:String,
+		label:'Part Name'
+	},
+	'parts.$.current':{
 		type:Number,
-		label: "Parts Made Target"
+		label:'Parts Made'
+	},
+	'parts.$.target':{
+		type:Number,
+		label:'Parts Target'
 	},
 	cycleVariance:{
 		type:Array
@@ -65,7 +76,7 @@ CellSchema = new SimpleSchema({
 		type:Array
 	},
 	'timeStamp.$':{
-		type:Date
+		type:String
 	}
 });
 
