@@ -4,7 +4,7 @@ var Connection = Tedious.Connection;
 // Initialize Logger:
 this.log = new Logger();
 // Initialize LoggerFile and enable with default settings:
-(new LoggerFile(log,Meteor.settings.private.log.options)).enable();
+(new LoggerFile(this.log,Meteor.settings.private.log.options)).enable();
 
 Jobs.allow({
 	insert: function(){
