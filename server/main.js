@@ -74,7 +74,7 @@ Meteor.startup(() => {
 	for(val in cellList){
 		cell = Cell.findOne({name:cellList[val].name});
 		if(!cell){
-			Cell.insert({name: cellList[val].name, group: cellList[val].group, andonOn:false, andonAnswered:false, downtime:0,totalDowntime:0,lastCT:0,bestCT:0, averageCT:0, targetCT:0,parts:[], cycleVariance:[],autoRunning:[],timeStamp:[]}, function(error, result) {
+			Cell.insert({name: cellList[val].name, group: cellList[val].group, shift:"", operator:0, andonOn:false, andonAnswered:false, downtime:0,totalDowntime:0,parts:[], cycleVariance:[],autoRunning:[],timeStamp:[]}, function(error, result) {
 				if(error){
 					log.error(error);
 					console.log(error);
@@ -94,26 +94,6 @@ Meteor.startup(() => {
 			return console.error(err);
 		}
 		connected = true;
-		/*
-		var request = new Tedious.Request("SELECT FromPLC, ShiftName, ProductionDate FROM dbo.ProductionResultFromPLC WHERE ShiftName = 'A'", function (err, rowCount) {
-			if (err) {
-				console.log(err);
-			}
-		});
-		request.on('row', function (columns) {
-			//console.log(columns);
-			var r = '';
-			columns.forEach(function (column) {
-				r = r + ' ' + column.value;
-			});
-			console.log('\n ', r);
-
-			// "select CycleVariance, DateTime from dbo.ProductionResultFromPLC WHERE DateTime < CURRENT_TIMESTAMP AND DateTime > DateADD(hh, -3, CURRENT_TIMESTAMP)"
-			console.log(Date());
-		});
-
-		connection.execSql(request);
-		*/
 	});
 
 	cells.forEach(function(cell){
@@ -145,6 +125,15 @@ Meteor.startup(() => {
 							if(id){
 								//Find Cell Parts and targets
 								var parts = [];
+								for(var i = 0; i < rowCount; ++i){
+									var part = {};
+									part.name = rows[i]["PartNo"];
+									part.current = rows[i]["PartCount"];
+									part.target = rows[i]["TargetBuild"];
+									autoRunning.push(rows[i]["AutoRunning"]["value"] ? 1:0 );
+									cycleVariance.push(rows[i]["CycleVariance"]["value"]);
+									timeStamp.push(new Date(rows[i]["TimeStamp"]["value"]));
+								}
 								for(var key in rows[0]){
 									if(!Meteor.settings.private.database.nonpartcolumns.includes(key)){
 										if(!key.includes("-Target")){
@@ -193,6 +182,8 @@ Meteor.startup(() => {
 								});
 								log.info("Finished Parsing Request");
 							}
+						}else{
+							log.error("No sql rows returned!");
 						}
 					}).run();
 				});

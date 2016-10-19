@@ -9,6 +9,14 @@ CellSchema = new SimpleSchema({
 		type: String,
 		label: "Cell Group"
 	},
+	shift:{
+		type: String,
+		label: "Current Shift"
+	},
+	operator:{
+		type: Number,
+		label: "Current Operator"
+	},
 	downtime:{
 		type:Number,
 		label: "Downtime"
@@ -24,22 +32,6 @@ CellSchema = new SimpleSchema({
 	andonAnswered:{
 		type:Boolean,
 		label: "Call Answered"
-	},
-	lastCT:{
-		type:Number,
-		label: "Last Cycle Time"
-	},
-	bestCT:{
-		type:Number,
-		label: "Best Cycle Time"
-	},
-	averageCT:{
-		type:Number,
-		label: "Average Cycle Time"
-	},
-	targetCT:{
-		type:Number,
-		label: "Target Cycle Time"
 	},
 	parts:{
 		type:Array
@@ -59,6 +51,22 @@ CellSchema = new SimpleSchema({
 	'parts.$.target':{
 		type:Number,
 		label:'Parts Target'
+	},
+	'parts.$.targetCT':{
+		type:Number,
+		label:'Target Cycle Time'
+	},
+	'parts.$.lastCT':{
+		type:Number,
+		label:'Last Cycle Time'
+	},
+	'parts.$.averageCT':{
+		type:Number,
+		label:'Average Cycle Time'
+	},
+	'parts.$.bestCT':{
+		type:Number,
+		label:'Best Cycle Time'
 	},
 	cycleVariance:{
 		type:Array
