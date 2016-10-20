@@ -7,7 +7,7 @@
 - Type ```meteor``` and press enter.
 - Let Meteor download the packages.
 - The cmd window will throw an error that settings is undefined.
-- Close the cmd window.
+- Close the cmd window once finished.
 
 ## Development
 - Create settings.json in project root with required settings, see [Settings Documentation](Settings.md).

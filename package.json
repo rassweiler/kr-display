@@ -9,8 +9,7 @@
 		"url": "git+https://github.com/rassweiler/kr-display.git"
 	},
 	"dependencies": {
-		"meteor-node-stubs": "~0.2.0",
-		"moment": "^2.14.1"
+		"meteor-node-stubs": "~0.2.0"
 	},
 	"version": "1.0.0",
 	"description": "Diplay client for connecting to an mssql database.",

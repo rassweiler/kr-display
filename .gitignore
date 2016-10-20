@@ -2,3 +2,4 @@ node_modules/
 *Thumbs.db
 settings.json
 public/img/PlantLayout.*
+Logs/*

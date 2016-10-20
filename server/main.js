@@ -74,7 +74,7 @@ Meteor.startup(() => {
 	for(val in cellList){
 		cell = Cell.findOne({name:cellList[val].name});
 		if(!cell){
-			Cell.insert({name: cellList[val].name, group: cellList[val].group, shift:"", operator:0, andonOn:false, andonAnswered:false, downtime:0,totalDowntime:0,parts:[], cycleVariance:[],autoRunning:[],timeStamp:[]}, function(error, result) {
+			Cell.insert({name: cellList[val].name, group: cellList[val].group, shift:"A", operator:0, andonOn:false, andonAnswered:false, downtime:0,totalDowntime:0,parts:[], cycleVariance:[],autoRunning:[],timeStamp:[]}, function(error, result) {
 				if(error){
 					log.error(error);
 					console.log(error);
@@ -95,15 +95,12 @@ Meteor.startup(() => {
 		}
 		connected = true;
 	});
-
 	cells.forEach(function(cell){
-		log.info("Setting Up Jobs");
 		var job = new Job(Jobs, 'queryDB',{cell:cell.name});
 		job.priority('normal').retry({ retries: 5,wait: 5*1000 }).delay(5*1000).repeat({ wait: 30*1000 }).save();
 	});
-
+	log.info("Set Up Jobs");
 	var workers = Jobs.processJobs('queryDB',function (job, cb) {
-		log.info("Running Job: "+job.data.cell);
 		var cellName = job.data.cell;
 		var query = "SELECT * FROM dbo."+ Meteor.settings.private.database.table +" WHERE Cell = '"+ cellName + "'";
 		if(connected){
@@ -117,7 +114,6 @@ Meteor.startup(() => {
 					}
 				});
 				request.on('doneInProc', function (rowCount, more, rows) {
-					log.info("Recieved SQL Request For Cell: "+job.data.cell);
 					Fiber(function() {
 						if(rowCount > 0){
 							var cell = Cell.find({name:cellName});
@@ -126,61 +122,38 @@ Meteor.startup(() => {
 								//Find Cell Parts and targets
 								var parts = [];
 								for(var i = 0; i < rowCount; ++i){
-									var part = {};
-									part.name = rows[i]["PartNo"];
-									part.current = rows[i]["PartCount"];
-									part.target = rows[i]["TargetBuild"];
-									autoRunning.push(rows[i]["AutoRunning"]["value"] ? 1:0 );
-									cycleVariance.push(rows[i]["CycleVariance"]["value"]);
-									timeStamp.push(new Date(rows[i]["TimeStamp"]["value"]));
-								}
-								for(var key in rows[0]){
-									if(!Meteor.settings.private.database.nonpartcolumns.includes(key)){
-										if(!key.includes("-Target")){
-											part = {};
-											part.name = key;
-											part.current = rows[0][key]["value"];
-											parts.push(part);
-										}
+									if(rows[i]["PartNo"]["value"]){
+										var part = {};
+										part.name = rows[i]["PartNo"]["value"];
+										part.current = rows[i]["PartCount"]["value"];
+										part.target = rows[i]["TargetBuild"]["value"];
+										part.targetCT = rows[i]["TactTimeTarget"]["value"];
+										part.lastCT = rows[i]["LastCycleTime"]["value"];
+										part.averageCT = rows[i]["AverageCycleTime"]["value"];
+										part.bestCT = rows[i]["BestCycleTime"]["value"];
+										parts.push(part);
 									}
 								}
-								for(var key in rows[0]){
-									if(!Meteor.settings.private.database.nonpartcolumns.includes(key)){
-										if(key.includes("-Target")){
-											var part = key.split("-")[0];
-											var i = -1;
-											for (var x in parts){
-												if(parts[x].name == part){
-													i = x;
-													break;
-												}
-											}
-											if(i > -1){
-												parts[i].target = rows[0][key]["value"];
-											}
-										}
-									}
-								}
-								var andonOn = rows[0].AndonOn.value;
-								var andonAnswered = rows[0].AndonAnswered.value;
-								var lastCT = rows[0].CycleTime.value;
-								var bestCT = rows[0].BestCycleTime.value;
-								var averageCT = rows[0].AverageCycleTime.value;
-								var targetCT = rows[0].TargetCycleTime.value;
+								var andonOn = (rows[0].CallOn.value == "True") ? true : false;
+								var andonAnswered = (rows[0].CallAnswered.value == "True") ? true : false;
 								var autoRunning = [];
 								var cycleVariance = [];
 								var timeStamp = [];
+								var shift = rows[0].ShiftName.value;
+								var operator = rows[0].ClockNo.value;
+								var downtime = rows[0].TotalCallTime.value;
+								var totalDowntime = rows[0].TotalCallAnsweredTime.value;
+								/*
 								for(var i = 0; i < rows.length; ++i){
 									autoRunning.push(rows[i]["AutoRunning"]["value"] ? 1:0 );
 									cycleVariance.push(rows[i]["CycleVariance"]["value"]);
 									timeStamp.push(new Date(rows[i]["TimeStamp"]["value"]));
-								}
-								Cell.update(id,{$set: {parts:parts,andonOn:andonOn,andonAnswered:andonAnswered,lastCT:lastCT,bestCT:bestCT,averageCT:averageCT,targetCT:targetCT,autoRunning:autoRunning,cycleVariance:cycleVariance,timeStamp:timeStamp}}, function(error, result){
+								}*/
+								Cell.update(id,{$set: {parts:parts,andonOn:andonOn,andonAnswered:andonAnswered,shift:shift,operator:operator,downtime:downtime,totalDowntime:totalDowntime,autoRunning:autoRunning,cycleVariance:cycleVariance,timeStamp:timeStamp}}, function(error, result){
 									if(error){
 										log.error(error);
 									}
 								});
-								log.info("Finished Parsing Request");
 							}
 						}else{
 							log.error("No sql rows returned!");
@@ -191,7 +164,6 @@ Meteor.startup(() => {
 				job.done();
 				cb();
 				Jobs.remove({status:'completed'});
-				log.info("Completed Job");
 		}else{
 			console.log("Not connected to db.");
 			log.error("Not connected to db.");

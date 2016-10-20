@@ -18,21 +18,16 @@
 			<p>Current: {{cell.downtime}}min</p>
 			<p>Total: {{cell.totalDowntime}}min</p>
 		</div>
-		{{#if hasCycleTimes}}
-		<div class="cycle-time">
-			<p class="title">Cycle Time</p>
-			<p>Target: {{cell.targetCT}}s</p>
-			<p>Last: {{cell.lastCT}}s</p>
-			<p>Best: {{cell.bestCT}}s</p>
-			<p>Average: {{cell.averageCT}}s</p>
-		</div>
-		{{/if}}
 		{{#if cell.parts}}
 		{{#each cell.parts}}
 		<div class="parts">
 			<p class="title">{{ name }}</p>
 			<p>Made: {{ current }}</p>
-			<p>Target: {{ target }}</p>
+			{{#if target}}<p>Target: {{ target }}</p>{{/if}}
+			<p>Last Cycle: {{ lastCT }}</p>
+			<p>Average Cycle: {{ averageCT }}</p>
+			<p>Best Cycle: {{ bestCT }}</p>
+			{{#if targetCT}}<p>Target Cycle: {{ targetCT }}</p>{{/if}}
 		</div>
 		{{/each}}
 		{{/if}}

@@ -1,5 +1,5 @@
 # Settings File
-This settings.json file should be located in the project root if you are using the development .bat file.
+This settings.json file should be located in the project root if you are using the Start-Dev.bat file. KR-Display requires these settings.
 
 ## Settings Example
 ```json
@@ -15,8 +15,7 @@ This settings.json file should be located in the project root if you are using t
 					"database": "Database"
 				}
 			},
-			"table":"TestTable",
-			"nonpartcolumns":"TimeStamp Cell Zone AutoRunning AndonOn AndonAnswered TargetCycleTime BestCycleTime AverageCycleTime CycleTime CycleVariance Downtime TotalDowntime"
+			"table":"TestTable"
 		},
 		"log":{
 			"options":{
