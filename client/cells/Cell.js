@@ -1,100 +1,119 @@
 Template.Cell.onCreated(function(){
 	var self = this;
 	self.autorun(function(){
-		var id = FlowRouter.getParam('_id');
-		self.subscribe('cell', id);
+		var name = FlowRouter.getParam('cellName');
+		self.subscribe('cell', name);
 	});
 });
 
 Template.Cell.helpers({
 	cell:()=>{
-		var id = FlowRouter.getParam('_id');
-		return Cell.findOne({_id:id});
+		var name = FlowRouter.getParam('cellName');
+		return Cell.findOne({name:name});
 	},
 	hasCycleTimes:()=>{
-		var id = FlowRouter.getParam('_id');
-		var cell = Cell.findOne({_id:id});
+		var name = FlowRouter.getParam('cellName');
+		var cell = Cell.findOne({name:name});
 		return (cell.lastCT > 0 || cell.bestCT > 0 || cell.averageCT > 0 || cell.targetCT > 0) ? true:false
 	},
-	chartData:()=>{
-		var id = FlowRouter.getParam('_id');
-		var cell = Cell.findOne({_id:id});
-		var timeStamp = cell.timeStamp;
-		if(timeStamp.length > 0){
-			var l = timeStamp.length;
-			for(var i = 0; i < l; ++i){
-				var d = Date.parse(timeStamp[i]);
-				timeStamp[i] = d;
+	partChart:function(part){
+		console.log(part);
+		var partName = "53307-0R030";
+		var name = FlowRouter.getParam('cellName');
+		var cell = Cell.findOne({name:name});
+		var index = -1;
+		for (var x = 0; x < cell.parts.length; ++x){
+			if(partName == cell.parts[x].name){
+				index = x;
+				break;
 			}
-			timeStamp.unshift('timeStamp');
-			var positive = ['positive'];
-			var negative = ['negative'];
-			for(val in cell.cycleVariance){
-				if(cell.cycleVariance[val] > 0){
-					positive.push(cell.cycleVariance[val]);
-					negative.push(0);
+		}
+		if(index > -1){
+			var timeStamp = cell.parts[index].timeStamp;
+			if(timeStamp.length > 0){
+				/*
+				var l = timeStamp.length;
+				for(var i = 0; i < l; ++i){
+					var d = Date.parse(timeStamp[i]);
+					timeStamp[i] = d;
+				}
+				*/
+				timeStamp.unshift('timeStamp');
+				if(cell.parts[index].variance.length > 0){
+					var positive = ['positive'];
+					var negative = ['negative'];
+					for(val in cell.parts[index].variance){
+						if(cell.parts[index].variance[val] > 0){
+							positive.push(cell.parts[index].variance[val]);
+							negative.push(0);
+						}else{
+							positive.push(0);
+							negative.push(cell.parts[index].variance[val]);
+						}
+					}
+					var a = {
+						size: {
+							height: 100
+						},
+						padding: {
+							right: 20
+						},
+						title:{
+							text:partName+' Cycle Time Variance'
+						},
+						data: {
+						  x:'timeStamp',
+						  columns: [
+							timeStamp,
+							positive,
+							negative
+						  ],
+						  type: 'area-step',
+						  colors: {
+								'positive': '#0000ff',
+								'negative': '#ff0000'
+							}
+						},
+						axis:{
+						  x:{
+							type:'timeseries',
+							label:'Time',
+							padding: {left:0, right:0},
+							tick:{
+							  format:'%H:%M'
+							}
+						  },
+						  y:{
+							max:50,
+							min:-50,
+							label:'Seconds',
+							padding: {top:0, bottom:0},
+							tick: {
+								count: 7
+							}
+						  }
+						},
+						legend: {
+							show: false
+						},
+						tooltip: {
+							show: false
+						}
+					};
+					return a;
 				}else{
-					positive.push(0);
-					negative.push(cell.cycleVariance[val]);
+					return null;
 				}
+			}else{
+				return null;
 			}
-			var a = {
-				size: {
-					height: 200
-				},
-				padding: {
-					right: 20
-				},
-				title:{
-					text:'Cycle Time Variance'
-				},
-				data: {
-				  x:'timeStamp',
-				  columns: [
-					timeStamp,
-					positive,
-					negative
-				  ],
-				  type: 'area-step',
-				  colors: {
-						'positive': '#0000ff',
-						'negative': '#ff0000'
-					}
-				},
-				axis:{
-				  x:{
-					type:'timeseries',
-					label:'Time',
-					padding: {left:0, right:0},
-					tick:{
-					  format:'%H:%M'
-					}
-				  },
-				  y:{
-					max:60,
-					min:-60,
-					label:'Seconds',
-					padding: {top:0, bottom:0},
-					tick: {
-						count: 7
-					}
-				  }
-				},
-				legend: {
-					show: false
-				},
-				tooltip: {
-					show: false
-				}
-			};
-			return a;
 		}else{
 			return null;
 		}
 	},
-	chartData2:()=>{
-		var id = FlowRouter.getParam('_id');
-		var cell = Cell.findOne({_id:id});
+	autoRunningChart:()=>{
+		var name = FlowRouter.getParam('cellName');
+		var cell = Cell.findOne({name:name});
 		var timeStamp = cell.timeStamp;
 		if(timeStamp.length > 0){
 			var l = timeStamp.length;

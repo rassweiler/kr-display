@@ -4,14 +4,16 @@
 	<div class="billboard cell-title {{#if cell.andonOn}}cell-down{{/if}}{{#if cell.andonAnswered}}-answered{{/if}}">
 		<h2>{{cell.name}}</h2>
 	</div>
+	{{#if cell.parts}}
 	<div class="charts">
-	{{#if chartData}}
-	{{> c3 data=chartData id="chart1"}}
-	{{/if}}
-	{{#if chartData2}}
-	{{> c3 data=chartData2 id="chart2"}}
+	{{#each cell.parts}}
+	{{> c3 data=partChart id=name part=name}}
+	{{/each}}
+	{{#if autoRunningChart}}
+	{{> c3 data=autoRunningChart id="autoRunning"}}
 	{{/if}}
 	</div>
+	{{/if}}
 	<div class="cell-data">
 		<div class="downtime">
 			<p class="title">Downtime</p>

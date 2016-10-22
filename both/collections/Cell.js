@@ -75,23 +75,27 @@ CellSchema = new SimpleSchema({
 		label:'Best Cycle Time',
 		optional: true
 	},
-	cycleVariance:{
-		type:Array
+	'parts.$.variance':{
+		type:Array,
+		optional:true
 	},
-	'cycleVariance.$':{
-		type:Number
+	'parts.$.variance.$':{
+		type:Number,
+		optional:true
+	},
+	'parts.$.timeStamp':{
+		type:Array,
+		optional:true
+	},
+	'parts.$.timeStamp.$':{
+		type:String,
+		optional:true
 	},
 	autoRunning:{
 		type:Array
 	},
 	'autoRunning.$':{
 		type:Number
-	},
-	timeStamp:{
-		type:Array
-	},
-	'timeStamp.$':{
-		type:String
 	}
 });
 

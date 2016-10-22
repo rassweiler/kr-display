@@ -23,9 +23,10 @@ Utility.deny({
 	}
 });
 
-Meteor.publish('cell', function(id){
-	check(id,String);
-	return Cell.find({_id:id});
+Meteor.publish('cell', function(name){
+	check(name,String);
+	console.log(name);
+	return Cell.find({name:name});
 });
 
 Meteor.publish('cells', function(){

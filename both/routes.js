@@ -26,8 +26,7 @@ cellRoutes.route('/', {
 	}
 });
 
-cellRoutes.route('/:_id', {
-	name: 'cell',
+cellRoutes.route('/:cellName', {
 	action() {
 		BlazeLayout.render("MainLayout", {main: "Cell"});
 	}
