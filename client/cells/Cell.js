@@ -7,6 +7,11 @@ Template.Cell.onCreated(function(){
 });
 
 Template.Cell.helpers({
+	parts:function(obj){
+		var result = [];
+		for (var key in obj) result.push(obj[key]);
+		return result;
+	},
 	cell:()=>{
 		var name = FlowRouter.getParam('cellName');
 		return Cell.findOne({name:name});
@@ -16,21 +21,17 @@ Template.Cell.helpers({
 		var cell = Cell.findOne({name:name});
 		return (cell.lastCT > 0 || cell.bestCT > 0 || cell.averageCT > 0 || cell.targetCT > 0) ? true:false
 	},
-	partChart:function(part){
-		console.log(part);
+	partChart:()=>{
 		var partName = "53307-0R030";
 		var name = FlowRouter.getParam('cellName');
 		var cell = Cell.findOne({name:name});
-		var index = -1;
-		for (var x = 0; x < cell.parts.length; ++x){
-			if(partName == cell.parts[x].name){
-				index = x;
-				break;
+		if(cell.parts[partName]){
+			var timeStamp = cell.parts[partName].timeStamp;
+			console.log(timeStamp);
+			if(!timeStamp){
+				return null;
 			}
-		}
-		if(index > -1){
-			var timeStamp = cell.parts[index].timeStamp;
-			if(timeStamp.length > 0){
+			if(timeStamp && timeStamp.length > 0){
 				/*
 				var l = timeStamp.length;
 				for(var i = 0; i < l; ++i){
@@ -39,16 +40,16 @@ Template.Cell.helpers({
 				}
 				*/
 				timeStamp.unshift('timeStamp');
-				if(cell.parts[index].variance.length > 0){
+				if(cell.parts[partName].variance.length > 0){
 					var positive = ['positive'];
 					var negative = ['negative'];
-					for(val in cell.parts[index].variance){
-						if(cell.parts[index].variance[val] > 0){
-							positive.push(cell.parts[index].variance[val]);
+					for(val in cell.parts[partName].variance){
+						if(cell.parts[partName].variance[val] > 0){
+							positive.push(cell.parts[partName].variance[val]);
 							negative.push(0);
 						}else{
 							positive.push(0);
-							negative.push(cell.parts[index].variance[val]);
+							negative.push(cell.parts[partName].variance[val]);
 						}
 					}
 					var a = {
@@ -115,7 +116,7 @@ Template.Cell.helpers({
 		var name = FlowRouter.getParam('cellName');
 		var cell = Cell.findOne({name:name});
 		var timeStamp = cell.timeStamp;
-		if(timeStamp.length > 0){
+		if(timeStamp && timeStamp.length > 0){
 			var l = timeStamp.length;
 			for(var i = 0; i < l; ++i){
 				var d = Date.parse(timeStamp[i]);

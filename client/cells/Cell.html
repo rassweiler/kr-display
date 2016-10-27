@@ -6,9 +6,11 @@
 	</div>
 	{{#if cell.parts}}
 	<div class="charts">
-	{{#each cell.parts}}
-	{{> c3 data=partChart id=name part=name}}
+	{{#let rowIndex=@index}}
+	{{#each parts cell.parts}}
+	{{> c3 data=partChart id=@index}}
 	{{/each}}
+	{{/let}}
 	{{#if autoRunningChart}}
 	{{> c3 data=autoRunningChart id="autoRunning"}}
 	{{/if}}
@@ -21,7 +23,7 @@
 			<p>Total: {{cell.totalDowntime}}min</p>
 		</div>
 		{{#if cell.parts}}
-		{{#each cell.parts}}
+		{{#each parts cell.parts}}
 		<div class="parts">
 			<p class="title">{{ name }}</p>
 			<p>Made: {{ current }}</p>
