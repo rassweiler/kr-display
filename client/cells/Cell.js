@@ -7,6 +7,11 @@ Template.Cell.onCreated(function(){
 });
 
 Template.Cell.helpers({
+	getCurrentPartId:function(part){
+		var name = FlowRouter.getParam('cellName');
+		var id = name+part;
+		return id;
+	},
 	parts:function(obj){
 		var result = [];
 		for (var key in obj) result.push(obj[key]);
@@ -21,13 +26,12 @@ Template.Cell.helpers({
 		var cell = Cell.findOne({name:name});
 		return (cell.lastCT > 0 || cell.bestCT > 0 || cell.averageCT > 0 || cell.targetCT > 0) ? true:false
 	},
-	partChart:()=>{
-		var partName = "53307-0R030";
+	partChart:function(part){
+		var partName = part;
 		var name = FlowRouter.getParam('cellName');
 		var cell = Cell.findOne({name:name});
 		if(cell.parts[partName]){
 			var timeStamp = cell.parts[partName].timeStamp;
-			console.log(timeStamp);
 			if(!timeStamp){
 				return null;
 			}
@@ -85,12 +89,12 @@ Template.Cell.helpers({
 							}
 						  },
 						  y:{
-							max:50,
-							min:-50,
+							max:40,
+							min:-40,
 							label:'Seconds',
 							padding: {top:0, bottom:0},
 							tick: {
-								count: 7
+								count: 5
 							}
 						  }
 						},

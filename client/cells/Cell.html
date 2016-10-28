@@ -1,49 +1,47 @@
 <template name="Cell">
 	{{#if Template.subscriptionsReady}}
-	{{#if cell}}
-	<div class="billboard cell-title {{#if cell.andonOn}}cell-down{{/if}}{{#if cell.andonAnswered}}-answered{{/if}}">
-		<h2>{{cell.name}}</h2>
-	</div>
-	{{#if cell.parts}}
-	<div class="charts">
-	{{#let rowIndex=@index}}
-	{{#each parts cell.parts}}
-	{{> c3 data=partChart id=@index}}
-	{{/each}}
-	{{/let}}
-	{{#if autoRunningChart}}
-	{{> c3 data=autoRunningChart id="autoRunning"}}
-	{{/if}}
-	</div>
-	{{/if}}
-	<div class="cell-data">
-		<div class="downtime">
-			<p class="title">Downtime</p>
-			<p>Current: {{cell.downtime}}min</p>
-			<p>Total: {{cell.totalDowntime}}min</p>
+		{{#if cell}}
+			<div class="billboard cell-title {{#if cell.andonOn}}cell-down{{/if}}{{#if cell.andonAnswered}}-answered{{/if}}">
+				<h2>{{cell.name}}</h2>
+			</div>
+			{{#if cell.parts}}
+				<div class="charts">
+				{{#each part in parts cell.parts}}
+					{{> c3 id=(getCurrentPartId part.name) data=(partChart part.name) partName=part.name}}
+				{{/each}}
+				{{#if autoRunningChart}}
+					{{> c3 data=autoRunningChart id="autoRunning"}}
+				{{/if}}
+				</div>
+			{{/if}}
+			<div class="cell-data">
+				<div class="downtime">
+					<p class="title">Downtime</p>
+					<p>Current: {{cell.downtime}}min</p>
+					<p>Total: {{cell.totalDowntime}}min</p>
+				</div>
+				{{#if cell.parts}}
+					{{#each parts cell.parts}}
+						<div class="parts">
+							<p class="title">{{ name }}</p>
+							<p>Made: {{ current }}</p>
+							{{#if target}}<p>Target: {{ target }}</p>{{/if}}
+							<p>Last Cycle: {{ lastCT }}</p>
+							<p>Average Cycle: {{ averageCT }}</p>
+							<p>Best Cycle: {{ bestCT }}</p>
+							{{#if targetCT}}<p>Target Cycle: {{ targetCT }}</p>{{/if}}
+						</div>
+					{{/each}}
+				{{/if}}
+			</div>
+		{{else}}
+		<div class="billboard cell-title cell-down">
+			<h2>Error: Unable to locate cell in database!</h2>
 		</div>
-		{{#if cell.parts}}
-		{{#each parts cell.parts}}
-		<div class="parts">
-			<p class="title">{{ name }}</p>
-			<p>Made: {{ current }}</p>
-			{{#if target}}<p>Target: {{ target }}</p>{{/if}}
-			<p>Last Cycle: {{ lastCT }}</p>
-			<p>Average Cycle: {{ averageCT }}</p>
-			<p>Best Cycle: {{ bestCT }}</p>
-			{{#if targetCT}}<p>Target Cycle: {{ targetCT }}</p>{{/if}}
-		</div>
-		{{/each}}
 		{{/if}}
-	</div>
 	{{else}}
-	<div class="billboard cell-title cell-down">
-		<h2>Error: Unable to locate cell in database!</h2>
-	</div>
-	{{/if}}
-	{{else}}
-	<div class="billboard">
-		<h2>Loading...</h2>
-	</div>
+		<div class="billboard">
+			<h2>Loading...</h2>
+		</div>
 	{{/if}}
 </template>
