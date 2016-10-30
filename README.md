@@ -13,10 +13,10 @@ Created by Kyle Rassweiler
 ![Cell List](Documentation/Sample002.png)
 ### Running Cell
 ![Cell Running](Documentation/Sample003.png)
-### Faulted Cell
-![Cell Faulted](Documentation/Sample004.png)
 ### Answered Cell
-![Cell Answered](Documentation/Sample005.png)
+![Cell Answered](Documentation/Sample004.png)
+### Faulted Cell
+![Cell Faulted](Documentation/Sample005.png)
 
 ## Installation
 - [Windows](Documentation/Windows.md)
