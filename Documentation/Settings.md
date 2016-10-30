@@ -7,37 +7,40 @@ This settings.json file should be located in the project root if you are using t
 	"private":{
 		"database":{
 			"config":{
-				"userName": "User",
-				"password": "Password",
-				"server":"server",
+				"userName": "ReadOnly",
+				"password": "ReadOnly",
+				"server":"SERVER",
 				"options":{
 					"encrypt": false,
-					"database": "Database"
+					"database": "DisplayTest",
+					"instanceName": "SQLEXPRESS",
+					"useColumnNames": true,
+					"rowCollectionOnDone": true,
+					"requestTimeout": 0
 				}
 			},
-			"table":"TestTable"
+			"tables":[
+				"CellInfo",
+				"CellVariance"
+			]
 		},
 		"log":{
 			"options":{
-				"path":"G:\\Path\\To\\My\\House\\Logs"
+				"path":"C:\\Path\\To\\Logs"
 			}
 		},
 		"cells":[
 			{
-				"name":"Test1",
+				"name":"Cell001",
 				"group":"A"
 			},
 			{
-				"name":"Test3",
+				"name":"Cell002",
+				"group":"B"
+			},
+			{
+				"name":"Cell S",
 				"group":"A"
-			},
-			{
-				"name":"Test2",
-				"group":"B"
-			},
-			{
-				"name":"Test0",
-				"group":"B"
 			}
 		],
 		"utilities":[
@@ -48,10 +51,16 @@ This settings.json file should be located in the project root if you are using t
 	},
 	"public": {
 		"plantLayout":{
-			"alt":"Plant Layout",
+			"alt":"Test Image",
 			"src": "/img/PlantLayout.png"
 		},
-		"company":"Some Place"
+		"company":"Company Name"
 	}
 }
 ```
+## Settings Values
+
+### database
+
+#### config
+This is fed directly to [Tedious](http://tediousjs.github.io/tedious/). If your database doesn't use named pipes you can remove the instance name.

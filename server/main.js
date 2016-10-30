@@ -172,7 +172,7 @@ Meteor.startup(() => {
 									});
 								}
 							}else{
-								log.error("No sql rows returned!");
+								log.error("No sql rows returned for query: "+query);
 							}
 							job.done();
 							cb();
@@ -203,7 +203,9 @@ Meteor.startup(() => {
 								var cell = Cell.find({name:cellName}).fetch()[0];
 								var id = cell._id;
 								if(id){
-									var autoRunning = cell.autoRunning;
+									var autoRunning = {};
+									autoRunning.values = [];
+									autoRunning.timeStamps = [];
 									var parts = cell.parts;
 									if(Object.keys(parts).length > 0){
 										for(val in parts){
@@ -213,16 +215,18 @@ Meteor.startup(() => {
 										for(var i = 0; i < rows.length; ++i){
 											parts[rows[i]["PartNo"]["value"]].variance.push(rows[i]["CycleVariance"]["value"]);
 											parts[rows[i]["PartNo"]["value"]].timeStamp.push(new Date(rows[i]["EndTime"]["value"]));
+											autoRunning.values.push((rows[i]["AutoRunning"]["value"] == true || rows[i]["AutoRunning"]["value"] == "true" || rows[i]["AutoRunning"]["value"] == "True")?1:0);
+											autoRunning.timeStamps.push(rows[i]["EndTime"]["value"]);
 										}
 									}
-									Cell.update(id,{$set: {parts:parts}},{upsert:true, bypassCollection2:true}, function(error, result){
+									Cell.update(id,{$set: {parts:parts,autoRunning:autoRunning}},{upsert:true, bypassCollection2:true}, function(error, result){
 										if(error){
 											log.error(error);
 										}
 									});
 								}
 							}else{
-								log.error("No sql rows returned!");
+								log.error("No sql rows returned for query: "+query);
 							}
 							job.done();
 							cb();

@@ -15,8 +15,8 @@ Template.Cell.helpers({
 		return (cell.parts[name].variance.length>0)?true:false;
 	},
 	getCurrentPartId:function(part){
-		var name = FlowRouter.getParam('cellName');
-		var id = name+part;
+		part = part.replace(/ /g, '');
+		var id = "ID"+part;
 		return id;
 	},
 	parts:function(obj){
@@ -126,19 +126,21 @@ Template.Cell.helpers({
 	autoRunningChart:()=>{
 		var name = FlowRouter.getParam('cellName');
 		var cell = Cell.findOne({name:name});
-		var timeStamp = cell.timeStamp;
+		var timeStamp = cell.autoRunning.timeStamps;
 		if(timeStamp && timeStamp.length > 0){
+			/*
 			var l = timeStamp.length;
 			for(var i = 0; i < l; ++i){
 				var d = Date.parse(timeStamp[i]);
 				timeStamp[i] = d;
 			}
+			*/
 			timeStamp.unshift('timeStamp');
-			var autoRunning = cell.autoRunning;
+			var autoRunning = cell.autoRunning.values;
 			autoRunning.unshift('autoRunning');
 			var a = {
 				size: {
-					height: 100
+					height: 75
 				},
 				padding: {
 					right: 20
@@ -169,7 +171,7 @@ Template.Cell.helpers({
 				  y:{
 					max:1,
 					min:0,
-					label:'Running',
+					label:'Auto',
 					padding: {top:0, bottom:0},
 					tick: {
 						count: 2
