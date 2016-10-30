@@ -38,3 +38,4 @@ KR-Display uses a single setting file located in the root for project specific d
 - [ ] Linux deployment documentation.
 - [ ] Comment code.
 - [ ] Proper checks and faults if settings file not set.
+- [ ] Handle spaces in cell names.

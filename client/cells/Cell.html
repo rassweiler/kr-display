@@ -7,7 +7,9 @@
 			{{#if cell.parts}}
 				<div class="charts">
 				{{#each part in parts cell.parts}}
-					{{> c3 id=(getCurrentPartId part.name) data=(partChart part.name) partName=part.name}}
+					{{#if hasVariance part.name}}
+						{{> c3 id=(getCurrentPartId part.name) data=(partChart part.name) partName=part.name}}
+					{{/if}}
 				{{/each}}
 				{{#if autoRunningChart}}
 					{{> c3 data=autoRunningChart id="autoRunning"}}

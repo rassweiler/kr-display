@@ -31,27 +31,17 @@ Meteor.startup(() => {
 			log.error(err);
 			return console.error(err);
 		}
-		log.info("In connection callback");
 		connected = true;
-	});
-	connection.on('debug', function(msg) {
-	    //log.debug(msg,msg);
-		// This is the only way to grab timeout errors??
-		if (msg.indexOf('timeout : failed') > -1) {
-			self.connectionError = true;
-		}
 	});
 	connection.on('errorMessage', function(err) {
 		log.error(err);
 		self.connectionError = true;
 	});
-	log.info("Connected to DB");
 	// Remove old jobs
 	Jobs.remove({});
 	Jobs.startJobServer();
 	// code to run on server at startup
 	// Remove deleted utilities
-	log.info("Started job server");
 	var utilities = Meteor.settings.private.utilities;
 	var utility = Utility.find({});
 	var remove = [];
@@ -80,7 +70,6 @@ Meteor.startup(() => {
 	}
 	utilities = null;
 	utility = null;
-	log.info("Checked Utilities");
 	// Remove deleted cells
 	var cellList = Meteor.settings.private.cells;
 	var cells = Cell.find({});
@@ -113,7 +102,6 @@ Meteor.startup(() => {
 	}
 	cell = null;
 	cellList = null;
-	log.info("Checked Cells");
 	
 	var op = 0;
 	cells.forEach(function(cell){
@@ -129,7 +117,7 @@ Meteor.startup(() => {
 	});
 	op = null;
 	cells = null;
-	log.info("Set Up Jobs");
+	log.info("Started Server");
 
 	var workers = Jobs.processJobs(['queryParts', 'queryVariance', 'clearCompleted'],{maxJobs: 1},function (job, cb) {
 		if (job._doc.type === 'queryParts') {
@@ -148,7 +136,6 @@ Meteor.startup(() => {
 					request.on('doneInProc', function (rowCount, more, rows) {
 						Fiber(function() {
 							if(rowCount > 0){
-								log.info("Row Count: "+rowCount);
 								var cell = Cell.find({name:cellName}).fetch()[0];
 								var id = cell._id;
 								if(id){
@@ -172,13 +159,13 @@ Meteor.startup(() => {
 											parts[name].bestCT = rows[i]["BestCycleTime"]["value"];
 										}
 									}
-									var andonOn = (rows[0].CallOn.value == "True") ? true : false;
-									var andonAnswered = (rows[0].CallAnswered.value == "True") ? true : false;
+									var andonOn = (rows[0].CallOn.value == "True" || rows[0].CallOn.value == "true" || rows[0].CallOn.value == true) ? true : false;
+									var andonAnswered = (rows[0].CallAnswered.value == "True" || rows[0].CallAnswered.value == "true" || rows[0].CallAnswered.value == true) ? true : false;
 									var shift = rows[0].ShiftName.value;
 									var operator = rows[0].ClockNo.value;
-									var downtime = rows[0].TotalCallTime.value;
-									var totalDowntime = rows[0].TotalCallAnsweredTime.value;
-									Cell.update(id,{$set: {andonOn:andonOn,andonAnswered:andonAnswered,shift:shift,operator:operator,downtime:downtime,totalDowntime:totalDowntime,parts:parts}},{upsert:true, bypassCollection2:true},function(error, result){
+									var downtime = rows[0].TotalCallAnsweredTime.value;
+									var totalDowntime = rows[0].TotalCallTime.value;
+									Cell.update(id,{$set: {andonOn:andonOn,andonAnswered:andonAnswered,shift:shift,operator:operator,downtime:downtime,totalDowntime:totalDowntime,parts:parts}},{upsert:true,bypassCollection2:true},function(error, result){
 										if(error){
 											log.error(error);
 										}
@@ -189,7 +176,6 @@ Meteor.startup(() => {
 							}
 							job.done();
 							cb();
-							log.info("Finished job.");
 						}).run();
 					});
 					connection.execSql(request);
@@ -214,7 +200,6 @@ Meteor.startup(() => {
 					request.on('doneInProc', function (rowCount, more, rows) {
 						Fiber(function() {
 							if(rowCount > 0){
-								log.info("Row Count: "+rowCount);
 								var cell = Cell.find({name:cellName}).fetch()[0];
 								var id = cell._id;
 								if(id){
@@ -222,7 +207,6 @@ Meteor.startup(() => {
 									var parts = cell.parts;
 									if(Object.keys(parts).length > 0){
 										for(val in parts){
-											log.debug("Val: ", val);
 											parts[val]["variance"] = [];
 											parts[val]["timeStamp"] = [];
 										}
@@ -240,7 +224,6 @@ Meteor.startup(() => {
 							}else{
 								log.error("No sql rows returned!");
 							}
-							log.info("Finished job");
 							job.done();
 							cb();
 							Jobs.remove({status:'completed'});

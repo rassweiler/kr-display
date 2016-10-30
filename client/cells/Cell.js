@@ -7,6 +7,13 @@ Template.Cell.onCreated(function(){
 });
 
 Template.Cell.helpers({
+	hasVariance:function(name){
+		var cell = Cell.findOne({name:FlowRouter.getParam('cellName')});
+		if(!cell.parts[name].variance){
+			return false;
+		}
+		return (cell.parts[name].variance.length>0)?true:false;
+	},
 	getCurrentPartId:function(part){
 		var name = FlowRouter.getParam('cellName');
 		var id = name+part;
