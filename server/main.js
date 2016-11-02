@@ -207,6 +207,7 @@ Meteor.startup(() => {
 									autoRunning.values = [];
 									autoRunning.timeStamps = [];
 									var parts = cell.parts;
+									//log.debug("Rows:", rows);
 									if(Object.keys(parts).length > 0){
 										for(val in parts){
 											parts[val]["variance"] = [];
@@ -215,8 +216,8 @@ Meteor.startup(() => {
 										for(var i = 0; i < rows.length; ++i){
 											parts[rows[i]["PartNo"]["value"]].variance.push(rows[i]["CycleVariance"]["value"]);
 											parts[rows[i]["PartNo"]["value"]].timeStamp.push(new Date(rows[i]["EndTime"]["value"]));
-											autoRunning.values.push((rows[i]["AutoRunning"]["value"] == true || rows[i]["AutoRunning"]["value"] == "true" || rows[i]["AutoRunning"]["value"] == "True")?1:0);
-											autoRunning.timeStamps.push(rows[i]["EndTime"]["value"]);
+											//autoRunning.values.push((rows[i]["AutoRunning"]["value"] == true || rows[i]["AutoRunning"]["value"] == "true" || rows[i]["AutoRunning"]["value"] == "True")?1:0);
+											//autoRunning.timeStamps.push(rows[i]["EndTime"]["value"]);
 										}
 									}
 									Cell.update(id,{$set: {parts:parts,autoRunning:autoRunning}},{upsert:true, bypassCollection2:true}, function(error, result){

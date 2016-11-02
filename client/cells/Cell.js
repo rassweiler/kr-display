@@ -39,17 +39,20 @@ Template.Cell.helpers({
 		var cell = Cell.findOne({name:name});
 		if(cell.parts[partName]){
 			var timeStamp = cell.parts[partName].timeStamp;
-			if(!timeStamp){
-				return null;
-			}
 			if(timeStamp && timeStamp.length > 0){
-				/*
-				var l = timeStamp.length;
-				for(var i = 0; i < l; ++i){
-					var d = Date.parse(timeStamp[i]);
-					timeStamp[i] = d;
+				var partCount = 0;
+				for (var key in cell.parts){
+					if(cell.parts[key].variance && cell.parts[key].variance.length > 0){
+						++partCount;
+					}
 				}
-				*/
+				var height = 230;
+				if(partCount){
+					height = height/partCount;
+					if(height < 70){
+						height = 70;
+					}
+				}
 				timeStamp.unshift('timeStamp');
 				if(cell.parts[partName].variance.length > 0){
 					var positive = ['positive'];
@@ -65,7 +68,7 @@ Template.Cell.helpers({
 					}
 					var a = {
 						size: {
-							height: 100
+							height: height
 						},
 						padding: {
 							right: 20
@@ -109,7 +112,7 @@ Template.Cell.helpers({
 							show: false
 						},
 						tooltip: {
-							show: false
+							show: true
 						}
 					};
 					return a;
@@ -128,13 +131,6 @@ Template.Cell.helpers({
 		var cell = Cell.findOne({name:name});
 		var timeStamp = cell.autoRunning.timeStamps;
 		if(timeStamp && timeStamp.length > 0){
-			/*
-			var l = timeStamp.length;
-			for(var i = 0; i < l; ++i){
-				var d = Date.parse(timeStamp[i]);
-				timeStamp[i] = d;
-			}
-			*/
 			timeStamp.unshift('timeStamp');
 			var autoRunning = cell.autoRunning.values;
 			autoRunning.unshift('autoRunning');
