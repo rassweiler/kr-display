@@ -19,10 +19,12 @@ This settings.json file should be located in the project root if you are using t
 					"requestTimeout": 0
 				}
 			},
-			"tables":[
-				"CellInfo",
-				"CellVariance"
-			]
+			"tables":{
+				"queryCell":"ProductionTimeStatusAll",
+				"verifyCell":"ProductionTimeStatusAll",
+				"queryVariance":"ProductionCycleVariance",
+				"queryAuto":"ProductionAutoOnState"
+			}
 		},
 		"log":{
 			"options":{

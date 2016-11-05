@@ -31,16 +31,15 @@ Meteor.startup(() => {
 			log.error(err);
 			return console.error(err);
 		}
+		
 		connected = true;
 	});
 	connection.on('errorMessage', function(err) {
 		log.error(err);
-		self.connectionError = true;
 	});
 	// Remove old jobs
 	Jobs.remove({});
 	Jobs.startJobServer();
-	// code to run on server at startup
 	// Remove deleted utilities
 	var utilities = Meteor.settings.private.utilities;
 	var utility = Utility.find({});
@@ -105,24 +104,26 @@ Meteor.startup(() => {
 	
 	var op = 0;
 	cells.forEach(function(cell){
-		var job = new Job(Jobs, 'queryParts',{cell:cell.name});
-		//job.priority('normal').retry({ retries: 3,wait: 5*1000 }).delay((6+op)*1000).repeat({ wait: 30*1000 }).save();
-		job.retry({ retries: 0,wait: 5*1000 }).delay((6+op)*1000).repeat({ wait: 30*1000 }).save();
+		var job = new Job(Jobs, 'queryCell',{cell:cell.name});
+		job.delay((1+op)*1000).repeat({ wait: 30*1000 }).save();
 		var job2 = new Job(Jobs, 'queryVariance',{cell:cell.name});
-		//job2.priority('normal').retry({ retries: 5,wait: 5*1000 }).delay(5*1000).repeat({ wait: 30*1000 }).save();
-		job2.retry({ retries: 0,wait: 5*1000 }).delay((7+op)*1000).repeat({ wait: 30*1000 }).save();
-		var job3 = new Job(Jobs, 'clearCompleted', {});
-		job3.retry({ retries: 0,wait: 5*1000 }).delay((8+op)*1000).repeat({ wait: 2*60*1000 }).save();
+		job2.delay((2+op)*1000).repeat({ wait: 30*1000 }).save();
+		var job3 = new Job(Jobs, 'queryAuto',{cell:cell.name});
+		job3.delay((3+op)*1000).repeat({ wait: 30*1000 }).save();
+		var job4 = new Job(Jobs, 'verifyCell',{cell:cell.name});
+		job4.delay((4+op)*1000).repeat({ wait: 24*60*60*1000 }).save();
 		op += 5;
 	});
+	var job = new Job(Jobs, 'clearCompleted', {});
+	job.retry({ retries: 0,wait: 5*1000 }).delay((4+op)*1000).repeat({ wait: 2*60*1000 }).save();
 	op = null;
 	cells = null;
 	log.info("Started Server");
 
-	var workers = Jobs.processJobs(['queryParts', 'queryVariance', 'clearCompleted'],{maxJobs: 1},function (job, cb) {
-		if (job._doc.type === 'queryParts') {
+	var workers = Jobs.processJobs(['queryCell', 'queryVariance', 'queryAuto', 'clearCompleted'],{maxJobs: 1},function (job, cb) {
+		if (job._doc.type === 'queryCell') {
 			var cellName = job.data.cell;
-			var query = "SELECT * FROM dbo."+ Meteor.settings.private.database.tables[0] +" WHERE Cell = '"+ cellName + "'";
+			var query = "SELECT * FROM dbo."+ Meteor.settings.private.database.tables[job._doc.type] +" WHERE Cell = '"+ cellName + "'";
 			if(connected){
 					var request = new Tedious.Request(query, function (err, rowCount) {
 						if (err) {
@@ -186,7 +187,56 @@ Meteor.startup(() => {
 			}
 		} else if (job._doc.type === 'queryVariance') {
 			var cellName = job.data.cell;
-			var query = "SELECT * FROM dbo."+ Meteor.settings.private.database.tables[1] +" WHERE Cell = '"+ cellName + "'";
+			var query = "SELECT * FROM dbo."+ Meteor.settings.private.database.tables[job._doc.type] +" WHERE Cell = '"+ cellName + "'";
+			if(connected){
+					var request = new Tedious.Request(query, function (err, rowCount) {
+						if (err) {
+							console.log(err);
+							log.error(err);
+							job.log("Job failed with error" + err,{level: 'warning'});
+							job.fail("" + err);
+							cb();
+						}
+					});
+					request.on('doneInProc', function (rowCount, more, rows) {
+						Fiber(function() {
+							if(rowCount > 0){
+								var cell = Cell.find({name:cellName}).fetch()[0];
+								var id = cell._id;
+								if(id){
+									var parts = cell.parts;
+									if(Object.keys(parts).length > 0){
+										for(val in parts){
+											parts[val]["variance"] = [];
+											parts[val]["timeStamp"] = [];
+										}
+										for(var i = 0; i < rows.length; ++i){
+											parts[rows[i]["PartNo"]["value"]].variance.push(rows[i]["CycleVariance"]["value"]);
+											parts[rows[i]["PartNo"]["value"]].timeStamp.push(new Date(rows[i]["EndTime"]["value"]));
+										}
+									}
+									Cell.update(id,{$set: {parts:parts,autoRunning:autoRunning}},{upsert:true, bypassCollection2:true}, function(error, result){
+										if(error){
+											log.error(error);
+										}
+									});
+								}
+							}else{
+								log.error("No sql rows returned for query: "+query);
+							}
+							job.done();
+							cb();
+						}).run();
+					});
+					connection.execSql(request);
+			}else{
+				log.error("Not connected to db.");
+				job.log("Job failed with error: Not connected to db.",{level: 'warning'});
+				job.fail("" + "Not Connected to db.");
+			}
+		} else if (job._doc.type === 'queryAuto') {
+			var cellName = job.data.cell;
+			var query = "SELECT * FROM dbo."+ Meteor.settings.private.database.tables[job._doc.type] +" WHERE Cell = '"+ cellName + "'";
 			if(connected){
 					var request = new Tedious.Request(query, function (err, rowCount) {
 						if (err) {
@@ -206,26 +256,46 @@ Meteor.startup(() => {
 									var autoRunning = {};
 									autoRunning.values = [];
 									autoRunning.timeStamps = [];
-									var parts = cell.parts;
-									//log.debug("Rows:", rows);
-									if(Object.keys(parts).length > 0){
-										for(val in parts){
-											parts[val]["variance"] = [];
-											parts[val]["timeStamp"] = [];
-										}
-										for(var i = 0; i < rows.length; ++i){
-											parts[rows[i]["PartNo"]["value"]].variance.push(rows[i]["CycleVariance"]["value"]);
-											parts[rows[i]["PartNo"]["value"]].timeStamp.push(new Date(rows[i]["EndTime"]["value"]));
-											//autoRunning.values.push((rows[i]["AutoRunning"]["value"] == true || rows[i]["AutoRunning"]["value"] == "true" || rows[i]["AutoRunning"]["value"] == "True")?1:0);
-											//autoRunning.timeStamps.push(rows[i]["EndTime"]["value"]);
-										}
+									for(var i = 0; i < rows.length; ++i){
+										autoRunning.values.push((rows[i]["AutoOn"]["value"] == true || rows[i]["AutoOn"]["value"] == "true" || rows[i]["AutoOn"]["value"] == "True" || rows[i]["AutoOn"]["value"] == 1)?1:0);
+										autoRunning.timeStamps.push(rows[i]["EventTime"]["value"]);
 									}
-									Cell.update(id,{$set: {parts:parts,autoRunning:autoRunning}},{upsert:true, bypassCollection2:true}, function(error, result){
+									Cell.update(id,{$set: {autoRunning:autoRunning}},{upsert:true, bypassCollection2:true}, function(error, result){
 										if(error){
 											log.error(error);
 										}
 									});
 								}
+							}else{
+								log.error("No sql rows returned for query: "+query);
+							}
+							job.done();
+							cb();
+						}).run();
+					});
+					connection.execSql(request);
+			}else{
+				log.error("Not connected to db.");
+				job.log("Job failed with error: Not connected to db.",{level: 'warning'});
+				job.fail("" + "Not Connected to db.");
+			}
+		} else if (job._doc.type === 'verifyCell') {
+			var cellName = job.data.cell;
+			var query = "SELECT * FROM dbo."+ Meteor.settings.private.database.tables[job._doc.type] +" WHERE Cell = '"+ cellName + "'";
+			if(connected){
+					var request = new Tedious.Request(query, function (err, rowCount) {
+						if (err) {
+							console.log(err);
+							log.error(err);
+							job.log("Job failed with error" + err,{level: 'warning'});
+							job.fail("" + err);
+							cb();
+						}
+					});
+					request.on('doneInProc', function (rowCount, more, rows) {
+						Fiber(function() {
+							if(rowCount > 0){
+								
 							}else{
 								log.error("No sql rows returned for query: "+query);
 							}

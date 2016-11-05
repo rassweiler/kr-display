@@ -136,7 +136,7 @@ Template.Cell.helpers({
 			autoRunning.unshift('autoRunning');
 			var a = {
 				size: {
-					height: 75
+					height: 60
 				},
 				padding: {
 					right: 20
@@ -178,7 +178,7 @@ Template.Cell.helpers({
 					show: false
 				},
 				tooltip: {
-					show: false
+					show: true
 				}
 			};
 			return a;
