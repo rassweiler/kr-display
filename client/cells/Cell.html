@@ -27,11 +27,12 @@
 						<div class="parts">
 							<p class="title">{{ name }}</p>
 							<p>Made: {{ current }}</p>
-							{{#if target}}<p>Target: {{ target }}</p>{{/if}}
+							{{#if target}}
+							<p>Target: {{ target }}</p>
 							<p>Last Cycle: {{ lastCT }}</p>
 							<p>Average Cycle: {{ averageCT }}</p>
 							<p>Best Cycle: {{ bestCT }}</p>
-							{{#if targetCT}}<p>Target Cycle: {{ targetCT }}</p>{{/if}}
+							<p>Target Cycle: {{ targetCT }}</p>{{/if}}
 						</div>
 					{{/each}}
 				{{/if}}

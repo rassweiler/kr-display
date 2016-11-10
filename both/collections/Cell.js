@@ -7,7 +7,8 @@ CellSchema = new SimpleSchema({
 	},
 	group:{
 		type: String,
-		label: "Cell Group"
+		label: "Cell Group",
+		optional:true
 	},
 	shift:{
 		type: String,

@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 var Connection = Tedious.Connection;
 var connected = false;
 var busy = false;
+var cells = [];
 //SimpleSchema.debug = true;
 
 // Initialize Logger:
@@ -26,17 +27,45 @@ Meteor.startup(() => {
 	//Start data collection jobs
 	var config = Meteor.settings.private.database.config;
 	var connection = new Connection(config);
+	console.log("Setup connection");
 	connection.on('connect', function (err) {
 		if (err){
 			log.error(err);
 			return console.error(err);
 		}
-		
+		console.log("Connected");
 		connected = true;
 	});
 	connection.on('errorMessage', function(err) {
-		log.error(err);
+		log.error("Error:",err);
 	});
+	var query = "SELECT DISTINCT Cell FROM dbo."+ Meteor.settings.private.database.tables["queryCell"];
+	var request = new Tedious.Request(query, function (err, rowCount) {
+		if (err) {
+			console.log(err);
+			log.error(err);
+		}
+	});
+	Cell.remove({});
+	
+	request.on('row', function (columns) {
+			console.log("Received sql cell list");
+			if(columns){
+				cells.push(columns["Cell"]["value"]);
+			}
+	});
+	
+	Meteor.setTimeout(function(){
+		console.log("Executing request");
+		connection.execSql(request);
+	},2000);
+
+	Meteor.setTimeout(function(){
+		console.log("Executing cell building");
+		for(var i = 0; i < cells.length; ++i){
+			Cell.insert({name: cells[i], parts:{}});
+		}
+	},5000);
 	// Remove old jobs
 	Jobs.remove({});
 	Jobs.startJobServer();
@@ -69,55 +98,27 @@ Meteor.startup(() => {
 	}
 	utilities = null;
 	utility = null;
-	// Remove deleted cells
-	var cellList = Meteor.settings.private.cells;
-	var cells = Cell.find({});
-	remove = [];
-	cells.forEach(function(ut){
-		var found = false;
-		for(val in cellList){
-			if(ut.name == cellList[val].name){
-				found = true;
-				break;
-			}
-		}
-		if(!found){
-			remove.push(ut.name);
-		}
-	});
-	Cell.remove({'name':{'$in':remove}});
-	remove = null;
-	// Add missing cells
-	for(val in cellList){
-		cell = Cell.findOne({name:cellList[val].name});
-		if(!cell){
-			Cell.insert({name: cellList[val].name, group: cellList[val].group, parts:{}}, function(error, result) {
-				if(error){
-					log.error(error, result);
-					console.log(error);
-				}
-			});
-		}
-	}
-	cell = null;
-	cellList = null;
-	
-	var op = 0;
-	cells.forEach(function(cell){
-		var job = new Job(Jobs, 'queryCell',{cell:cell.name});
-		job.delay((1+op)*1000).repeat({ wait: 30*1000 }).save();
-		var job2 = new Job(Jobs, 'queryVariance',{cell:cell.name});
-		job2.delay((2+op)*1000).repeat({ wait: 30*1000 }).save();
-		var job3 = new Job(Jobs, 'queryAuto',{cell:cell.name});
-		job3.delay((3+op)*1000).repeat({ wait: 30*1000 }).save();
-		var job4 = new Job(Jobs, 'verifyCell',{cell:cell.name});
-		job4.delay((4+op)*1000).repeat({ wait: 24*60*60*1000 }).save();
-		op += 5;
-	});
-	var job = new Job(Jobs, 'clearCompleted', {});
-	job.retry({ retries: 0,wait: 5*1000 }).delay((4+op)*1000).repeat({ wait: 2*60*1000 }).save();
-	op = null;
-	cells = null;
+
+	Meteor.setTimeout(function(){
+		var cells = Cell.find({});
+		console.log("Setting up jobs based on cells");
+		var op = 0;
+		cells.forEach(function(cell){
+			var job = new Job(Jobs, 'queryCell',{cell:cell.name});
+			job.delay((1+op)*1000).repeat({ wait: 30*1000 }).save();
+			var job2 = new Job(Jobs, 'queryVariance',{cell:cell.name});
+			job2.delay((2+op)*1000).repeat({ wait: 30*1000 }).save();
+			var job3 = new Job(Jobs, 'queryAuto',{cell:cell.name});
+			job3.delay((3+op)*1000).repeat({ wait: 30*1000 }).save();
+			var job4 = new Job(Jobs, 'verifyCell',{cell:cell.name});
+			job4.delay((4+op)*1000).repeat({ wait: 24*60*60*1000 }).save();
+			op += 5;
+		});
+		var job = new Job(Jobs, 'clearCompleted', {});
+		job.retry({ retries: 0,wait: 5*1000 }).delay((4+op)*1000).repeat({ wait: 2*60*1000 }).save();
+		op = null;
+		cells = null;
+	}, 10000);
 	log.info("Started Server");
 
 	var workers = Jobs.processJobs(['queryCell', 'queryVariance', 'queryAuto', 'clearCompleted'],{maxJobs: 1},function (job, cb) {
@@ -155,7 +156,6 @@ Meteor.startup(() => {
 											parts[name].current = rows[i]["PartCount"]["value"];
 											parts[name].target = rows[i]["TargetBuild"]["value"];
 											parts[name].targetCT = rows[i]["TactTimeTarget"]["value"];
-											parts[name].lastCT = rows[i]["LastCycleTime"]["value"];
 											parts[name].averageCT = rows[i]["AverageCycleTime"]["value"];
 											parts[name].bestCT = rows[i]["BestCycleTime"]["value"];
 										}
@@ -187,7 +187,7 @@ Meteor.startup(() => {
 			}
 		} else if (job._doc.type === 'queryVariance') {
 			var cellName = job.data.cell;
-			var query = "SELECT * FROM dbo."+ Meteor.settings.private.database.tables[job._doc.type] +" WHERE Cell = '"+ cellName + "'";
+			var query = "SELECT * FROM dbo."+ Meteor.settings.private.database.tables[job._doc.type] +" WHERE Cell = '"+ cellName + "' ORDER BY 'EndTime' DESC";
 			if(connected){
 					var request = new Tedious.Request(query, function (err, rowCount) {
 						if (err) {
@@ -209,13 +209,22 @@ Meteor.startup(() => {
 										for(val in parts){
 											parts[val]["variance"] = [];
 											parts[val]["timeStamp"] = [];
+											parts[val]["lastCT"] = null;
+											if(parts[val]["targetCT"] != null){
+												for(var i = 0; i < rows.length; ++i){
+													if(rows[i]["PartNo"]["value"] == val){
+														parts[val]["lastCT"] = rows[i]["CycleTime"]["value"];
+														break;
+													}
+												}
+											}
 										}
 										for(var i = 0; i < rows.length; ++i){
 											parts[rows[i]["PartNo"]["value"]].variance.push(rows[i]["CycleVariance"]["value"]);
 											parts[rows[i]["PartNo"]["value"]].timeStamp.push(new Date(rows[i]["EndTime"]["value"]));
 										}
 									}
-									Cell.update(id,{$set: {parts:parts,autoRunning:autoRunning}},{upsert:true, bypassCollection2:true}, function(error, result){
+									Cell.update(id,{$set: {parts:parts}},{upsert:true, bypassCollection2:true}, function(error, result){
 										if(error){
 											log.error(error);
 										}
