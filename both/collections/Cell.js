@@ -1,3 +1,9 @@
+/*
+Cell Schema. Uses Collection2 and simpleschema. 
+NOTE: the server pretty much bypasses this at the moment but this still holds for any client side.
+All the cell structural setups is done in main.js.
+*/
+
 Cell = new Mongo.Collection('cell');
 
 CellSchema = new SimpleSchema({

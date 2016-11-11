@@ -31,20 +31,6 @@ This settings.json file should be located in the project root if you are using t
 				"path":"C:\\Path\\To\\Logs"
 			}
 		},
-		"cells":[
-			{
-				"name":"Cell001",
-				"group":"A"
-			},
-			{
-				"name":"Cell002",
-				"group":"B"
-			},
-			{
-				"name":"Cell S",
-				"group":"A"
-			}
-		],
 		"utilities":[
 			"Electrical",
 			"Water",

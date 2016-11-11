@@ -92,7 +92,9 @@ Template.Cell.helpers({
 						axis:{
 						  x:{
 							type:'timeseries',
-							label:'Time',
+							label:{
+								text:'Time'
+							},
 							padding: {left:0, right:0},
 							tick:{
 							  format:'%H:%M'
@@ -101,7 +103,10 @@ Template.Cell.helpers({
 						  y:{
 							max:40,
 							min:-40,
-							label:'Seconds',
+							label:{
+								text:'Seconds',
+								position: 'outer-right'
+							},
 							padding: {top:0, bottom:0},
 							tick: {
 								count: 5
@@ -158,7 +163,9 @@ Template.Cell.helpers({
 				axis:{
 				  x:{
 					type:'timeseries',
-					label:'Time',
+					label:{
+						text:'Time'
+					},
 					padding: {left:0, right:0},
 					tick:{
 					  format:'%H:%M'
@@ -167,7 +174,10 @@ Template.Cell.helpers({
 				  y:{
 					max:1,
 					min:0,
-					label:'Auto',
+					label: {
+						text:'Auto',
+						position: 'outer-right'
+					},
 					padding: {top:0, bottom:0},
 					tick: {
 						count: 2

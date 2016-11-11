@@ -187,12 +187,44 @@ input[type="password"] {
 	border-bottom: 1px solid $dgrey;
 	color: $text;
 	position: relative;
-	font-size: 0.8em;
+	font-size: 0.7em;
 	text-align: center;
-	padding: 10px;
 	z-index: 3;
 	h2{
 		margin: 0;
+		a{
+			color: $text;
+			text-decoration: none;
+		}
+	}
+}
+
+.cell-menu{
+	font-size:1.4em;
+	display:inline-flex;
+	.tech{
+		color: $slate;
+	}
+	.operator{
+		color: $green;
+	}
+	.report{
+		color: $blue;
+	}
+	.incident{
+		color: $yellow;
+	}
+	.scrap{
+		color: $red;
+	}
+	a{
+		color: $text;
+		text-decoration: none;
+		margin-left: 8px;
+		margin-right: 8px;
+		&:hover{
+			background: $dgrey;
+		}
 	}
 }
 
@@ -514,8 +546,8 @@ input, select, textarea{
 	width:100%;
 	text-align:center;
 	div{
-		padding-left: 15px;
-		padding-right: 15px;
+		padding-left: 10px;
+		padding-right: 10px;
 		border-radius: 10px;
 		margin: 15px;
 		display: inline-block;

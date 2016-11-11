@@ -1,3 +1,7 @@
+/*
+All possible routes in the app.
+*/
+
 // Home Page
 FlowRouter.route('/', {
     name: 'home',

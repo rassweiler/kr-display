@@ -2,7 +2,14 @@
 	{{#if Template.subscriptionsReady}}
 		{{#if cell}}
 			<div class="billboard cell-title {{#if cell.andonOn}}cell-down{{/if}}{{#if cell.andonAnswered}}-answered{{/if}}">
-				<h2>{{cell.name}}</h2>
+				<h2><a href="/cells/{{cell.name}}">{{cell.name}}</a></h2>
+			</div>
+			<div class="cell-menu">
+				<a href="/cells/{{cell.name}}/operator"><i class="fa fa-user operator" area-hidden="true"></i>Operator</a>
+				<a href="/cells/{{cell.name}}/shift-report"><i class="fa fa-file-text report" area-hidden="true"></i>Shift Report</a>
+				<a href="/cells/{{cell.name}}/incident-report"><i class="fa fa-exclamation-triangle incident" area-hidden="true"></i>Incident Report</a>
+				<a href="/cells/{{cell.name}}/scrap-report"><i class="fa fa-trash scrap" area-hidden="true"></i>Scrap Report</a>
+				<a href="/cells/{{cell.name}}/tech-report"><i class="fa fa-wrench tech" area-hidden="true"></i>Tech-Report</a>
 			</div>
 			{{#if cell.parts}}
 				<div class="charts">
@@ -18,9 +25,13 @@
 			{{/if}}
 			<div class="cell-data">
 				<div class="downtime">
+					{{#if cell.operator}}
+					<p class="title">Operator</p>
+					<p>{{cell.operator}}</p>
+					{{/if}}
 					<p class="title">Downtime</p>
 					<p>Current: {{cell.downtime}}min</p>
-					<p>Total: {{cell.totalDowntime}}min</p>
+					<p>Shift: {{cell.totalDowntime}}min</p>
 				</div>
 				{{#if cell.parts}}
 					{{#each parts cell.parts}}
