@@ -36,3 +36,38 @@ cellRoutes.route('/:cellName', {
 		BlazeLayout.render("MainLayout", {main: "Cell"});
 	}
 });
+
+cellRoutes.route('/:cellName/operator', {
+	name:'operator',
+	action: function(params) {
+		BlazeLayout.render("MainLayout", {main: "CellOperator"});
+	}
+});
+
+cellRoutes.route('/:cellName/shift-report', {
+	name:'report',
+	action: function(params) {
+		BlazeLayout.render("MainLayout", {main: "CellReport"});
+	}
+});
+
+cellRoutes.route('/:cellName/incident-report', {
+	name:'incident',
+	action: function(params) {
+		BlazeLayout.render("MainLayout", {main: "CellIncident"});
+	}
+});
+
+cellRoutes.route('/:cellName/scrap-report', {
+	name:'scrapoperator',
+	action: function(params) {
+		BlazeLayout.render("MainLayout", {main: "CellScrap"});
+	}
+});
+
+cellRoutes.route('/:cellName/tech-report', {
+	name:'tech',
+	action: function(params) {
+		BlazeLayout.render("MainLayout", {main: "CellTech"});
+	}
+});

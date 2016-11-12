@@ -34,6 +34,10 @@ CellSchema = new SimpleSchema({
 			}
 		}
 	},
+	operator:{
+		type: Date,
+		label: "Start Time"
+	},
 	downtime:{
 		type:Number,
 		label: "Downtime",

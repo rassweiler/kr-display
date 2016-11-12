@@ -202,6 +202,8 @@ input[type="password"] {
 .cell-menu{
 	font-size:1.4em;
 	display:inline-flex;
+	background: #EEFAFC;
+	width:100%;
 	.tech{
 		color: $slate;
 	}
@@ -225,6 +227,19 @@ input[type="password"] {
 		&:hover{
 			background: $dgrey;
 		}
+	}
+}
+
+div.operator{
+	width: 30%;
+	border-radius: 5px;
+	margin:15px;
+	padding:8px;
+	text-align: center;
+	@include card(2);
+	img{
+		width:100%;
+		height: auto;
 	}
 }
 

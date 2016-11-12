@@ -7,6 +7,9 @@ Template.Cell.onCreated(function(){
 });
 
 Template.Cell.helpers({
+	getCellName:function(){
+		return FlowRouter.getParam('cellName');
+	},
 	hasVariance:function(name){
 		var cell = Cell.findOne({name:FlowRouter.getParam('cellName')});
 		if(!cell.parts[name].variance){
