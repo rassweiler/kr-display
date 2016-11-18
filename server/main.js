@@ -1,5 +1,6 @@
 Fiber = Npm.require('fibers');
 import { Meteor } from 'meteor/meteor';
+import * as moment from "moment/moment";
 var Connection = Tedious.Connection;
 var connected = false;
 var busy = false;
@@ -166,7 +167,10 @@ Meteor.startup(() => {
 									var operator = rows[0].ClockNo.value;
 									var downtime = rows[0].TotalCallAnsweredTime.value;
 									var totalDowntime = rows[0].TotalCallTime.value;
-									Cell.update(id,{$set: {andonOn:andonOn,andonAnswered:andonAnswered,shift:shift,operator:operator,downtime:downtime,totalDowntime:totalDowntime,parts:parts}},{upsert:true,bypassCollection2:true},function(error, result){
+									var startTime = rows[0].OperationStartTime.value;
+									var runTime = rows[0].OperationTime.value;
+									var autoTime = rows[0].AutoRunTime.value;
+									Cell.update(id,{$set: {andonOn:andonOn,andonAnswered:andonAnswered,shift:shift,operator:operator,startTime:startTime,runTime:runTime,autoTime:autoTime,downtime:downtime,totalDowntime:totalDowntime,parts:parts}},{upsert:true,bypassCollection2:true},function(error, result){
 										if(error){
 											log.error(error);
 										}

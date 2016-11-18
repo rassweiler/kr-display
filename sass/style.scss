@@ -200,7 +200,7 @@ input[type="password"] {
 }
 
 .cell-menu{
-	font-size:1.4em;
+	font-size:1.3em;
 	display:inline-flex;
 	background: #EEFAFC;
 	width:100%;
@@ -230,16 +230,29 @@ input[type="password"] {
 	}
 }
 
-div.operator{
-	width: 30%;
-	border-radius: 5px;
-	margin:15px;
-	padding:8px;
-	text-align: center;
-	@include card(2);
-	img{
-		width:100%;
-		height: auto;
+.cellinfo{
+	display:-webkit-box;
+	padding:10px;
+	.operator{
+		width: 30%;
+		border-radius: 5px;
+		padding:8px;
+		text-align: center;
+		@include card(2);
+		img{
+			width:100%;
+			height: auto;
+		}
+	}
+	.cellstats{
+		padding:10px;
+		width:70%;
+		font-weight: bolder;
+		font-size:1.3em;
+		.name{
+			width:100%;
+			text-align: center;
+		}
 	}
 }
 

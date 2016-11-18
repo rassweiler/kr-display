@@ -1,0 +1,22 @@
+<template name="CellMenu">
+<div class="cell-menu">
+	<div>
+	<a href="/cells/{{cell.name}}"><i class="fa fa-cube" area-hidden="true"></i>Cell View</a>
+	</div>
+	<div>
+	<a href="/cells/{{cell.name}}/operator"><i class="fa fa-user operator" area-hidden="true"></i>Operator</a>
+	</div>
+	<div>
+	<a href="/cells/{{cell.name}}/shift-report"><i class="fa fa-file-text report" area-hidden="true"></i>Shift Report</a>
+	</div>
+	<div>
+	<a href="/cells/{{cell.name}}/incident-report"><i class="fa fa-exclamation-triangle incident" area-hidden="true"></i>Incident Report</a>
+	</div>
+	<div>
+	<a href="/cells/{{cell.name}}/scrap-report"><i class="fa fa-trash scrap" area-hidden="true"></i>Scrap Report</a>
+	</div>
+	<div>
+	<a href="/cells/{{cell.name}}/tech-report"><i class="fa fa-wrench tech" area-hidden="true"></i>Tech-Report</a>
+	</div>
+</div>
+</template>

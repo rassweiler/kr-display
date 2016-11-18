@@ -4,13 +4,7 @@
 			<div class="billboard cell-title {{#if cell.andonOn}}cell-down{{/if}}{{#if cell.andonAnswered}}-answered{{/if}}">
 				<h2><a href="/cells/{{cell.name}}">{{cell.name}}</a></h2>
 			</div>
-			<div class="cell-menu">
-				<a href="/cells/{{cell.name}}/operator"><i class="fa fa-user operator" area-hidden="true"></i>Operator</a>
-				<a href="/cells/{{cell.name}}/shift-report"><i class="fa fa-file-text report" area-hidden="true"></i>Shift Report</a>
-				<a href="/cells/{{cell.name}}/incident-report"><i class="fa fa-exclamation-triangle incident" area-hidden="true"></i>Incident Report</a>
-				<a href="/cells/{{cell.name}}/scrap-report"><i class="fa fa-trash scrap" area-hidden="true"></i>Scrap Report</a>
-				<a href="/cells/{{cell.name}}"><i class="fa fa-cube tech" area-hidden="true"></i>Cell View</a>
-			</div>
+			{{> CellMenu cell=cell}}
 		{{else}}
 		<div class="billboard cell-title cell-down">
 			<h2>Error: Unable to locate cell in database!</h2>
