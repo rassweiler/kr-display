@@ -5,6 +5,18 @@
 				<h2><a href="/cells/{{cell.name}}">{{cell.name}}</a></h2>
 			</div>
 			{{> CellMenu cell=cell}}
+			<div class="techreport">
+				<h3 class="formtitle">Tech Report</h3>
+				<form class="new-report">
+					<label for="issue">Issue</label>
+					<textarea type="text" name="issue" placeholder="What was the issue?"></textarea>
+					<label for="cause">Cause</label>
+					<textarea type="text" name="cause" placeholder="What was the cause?"></textarea>
+					<label for="repair">Repair</label>
+					<textarea type="text" name="repair" placeholder="What was the repair?"></textarea>
+					<input type="submit" class="formsubmit">
+				</form>
+			</div>
 		{{else}}
 		<div class="billboard cell-title cell-down">
 			<h2>Error: Unable to locate cell in database!</h2>

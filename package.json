@@ -10,8 +10,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.18.0",
-    "meteor-node-stubs": "~0.2.0",
-    "moment": "^2.16.0"
+    "meteor-node-stubs": "~0.2.0"
   },
   "version": "1.0.0",
   "description": "Diplay client for connecting to an mssql database.",

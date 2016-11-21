@@ -281,6 +281,24 @@ input[type="password"] {
 	}
 }
 
+.techreport{
+	padding:10px;
+	textarea{
+		border:1px solid $dgrey;
+		border-radius: 4px;
+		resize:none;
+		height:15vh;
+	}
+	.formtitle{
+
+	}
+	.formsubmit{
+		border-radius: 4px;
+		background:$green;
+		font-weight:bolder;
+	}
+}
+
 .btn, button{
 	display: inline-block;
 	cursor: pointer;

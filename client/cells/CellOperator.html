@@ -6,11 +6,13 @@
 			</div>
 			{{> CellMenu cell=cell}}
 			<div class="cellinfo">
-				{{#if cell.operator}}
 				<div class="operator">
-					<img alt="Operator {{cell.operator}}" src="/img/Operators/{{cell.operator}}.jpg">
-				</div>
+				{{#if cell.operator}}
+					<img alt="Operator {{cell.operator}}" src="/img/Operators/{{cell.operator}}.png">
+				{{else}}
+					<img alt="Operator {{cell.operator}}" src="/img/Operators/sample.png">
 				{{/if}}
+				</div>
 				<div class="cellstats">
 					{{#if cell.operator}}
 					<div class="name">

@@ -21,7 +21,7 @@ Template.CellOperator.helpers({
 		}
 	},
 	getDateFormat:function(date){
-		let date2 = moment(date).format('YYYY MM DD');
+		let date2 = moment(date).format('YYYY-MM-DD hh:mm:ss');
 		return date2;
 	}
 });
