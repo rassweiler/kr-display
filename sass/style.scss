@@ -210,10 +210,10 @@ input[type="password"] {
 	.operator{
 		color: $green;
 	}
-	.report{
+	.shift{
 		color: $blue;
 	}
-	.incident{
+	.event{
 		color: $yellow;
 	}
 	.scrap{
@@ -246,12 +246,15 @@ input[type="password"] {
 	}
 	.cellstats{
 		padding:10px;
+		padding-left:20px;
 		width:70%;
 		font-weight: bolder;
 		font-size:1.3em;
 		.name{
-			width:100%;
-			text-align: center;
+			h3{
+				padding:0;
+				margin:0;
+			}
 		}
 	}
 }
@@ -281,20 +284,29 @@ input[type="password"] {
 	}
 }
 
-.techreport{
+.report{
 	padding:10px;
 	textarea{
 		border:1px solid $dgrey;
 		border-radius: 4px;
 		resize:none;
-		height:15vh;
+		height:12vh;
 	}
 	.formtitle{
 
 	}
+	.submit{
+		border-radius: 4px;
+		font-weight:bolder;
+	}
 	.formsubmit{
 		border-radius: 4px;
 		background:$green;
+		font-weight:bolder;
+	}
+	.scrapsubmit{
+		border-radius: 4px;
+		background:$red;
 		font-weight:bolder;
 	}
 }

@@ -5,9 +5,16 @@
 				<h2><a href="/cells/{{cell.name}}">{{cell.name}}</a></h2>
 			</div>
 			{{> CellMenu cell=cell}}
-			<div class="techreport">
+			<div class="report">
 				<h3 class="formtitle">Tech Report</h3>
 				<form class="new-report">
+					<label for="assets">Asset</label>
+					<select name="assets">
+						<option value="ass001">Asset 001</option>
+						<option value="ass002">Asset 002</option>
+						<option value="ass003">Asset 003</option>
+						<option value="ass004">Asset 004</option>
+					</select>
 					<label for="issue">Issue</label>
 					<textarea type="text" name="issue" placeholder="What was the issue?"></textarea>
 					<label for="cause">Cause</label>

@@ -5,6 +5,45 @@
 				<h2><a href="/cells/{{cell.name}}">{{cell.name}}</a></h2>
 			</div>
 			{{> CellMenu cell=cell}}
+			<div class="report">
+				<h3 class="formtitle">Scrap Report</h3>
+				<form class="new-report">
+					<label for="part">Part Number</label>
+					<select name="part">
+						{{#each part in parts cell.parts}}
+						<option value="good">{{part.name}}</option>
+						{{/each}}
+					</select>
+					<label for="amount">Amount</label>
+					<input type="number" name="amount" placeholder="How many?"/>
+					<label for="reason">Reason</label>
+					<select name="reason">
+						<option value="1501">Burr</option>
+						<option value="1502">Die Mark</option>
+						<option value="1503">Winked Nut</option>
+						<option value="1504">Hole Size</option>
+						<option value="1505">Hole Location</option>
+						<option value="1506">Trim Line</option>
+						<option value="1507">Surface Tolerance</option>
+						<option value="1508">De-lamination</option>
+						<option value="1509">Missing Material</option>
+						<option value="1510">Discrimination Mark</option>
+						<option value="1511">Oil Stain</option>
+						<option value="1512">Pulled Hole</option>
+						<option value="1513">Rust</option>
+						<option value="1514">Scrape Mark</option>
+						<option value="1515">Scratch</option>
+						<option value="1516">Split</option>
+						<option value="1517">Wrinkles</option>
+						<option value="1518">Dimensional</option>
+						<option value="1519">Start-up/EOL Scrap</option>
+						<option value="1520">Damaged Blank</option>
+					</select>
+					<label for="comment">Comments</label>
+					<textarea type="text" name="comment" placeholder="Comments?"></textarea>
+					<input type="submit" class="scrapsubmit">
+				</form>
+			</div>
 		{{else}}
 		<div class="billboard cell-title cell-down">
 			<h2>Error: Unable to locate cell in database!</h2>

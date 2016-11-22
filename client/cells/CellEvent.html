@@ -1,0 +1,72 @@
+<template name="CellEvent">
+	{{#if Template.subscriptionsReady}}
+		{{#if cell}}
+			<div class="billboard cell-title {{#if cell.andonOn}}cell-down{{/if}}{{#if cell.andonAnswered}}-answered{{/if}}">
+				<h2><a href="/cells/{{cell.name}}">{{cell.name}}</a></h2>
+			</div>
+			{{> CellMenu cell=cell}}
+			<div class="report">
+				<h3 class="formtitle">Event Report</h3>
+				<form class="new-report">
+					<label for="start">Start</label>
+					<input type="datetime-local" name="start" value="{{getNow}}"/>
+					<label for="end">End</label>
+					<input type="datetime-local" name="end" value="{{getNow}}"/>
+					<label for="event">Event</label>
+					<select name="event">
+						<option value="0">Equipment</option>
+						<option value="1201">Bolt Feeder</option>
+						<option value="1202">Nut Feeder</option>
+						<option value="1203">Action</option>
+						<option value="1204">Matehan Part</option>
+						<option value="1205">Light Curtain</option>
+						<option value="1206">Sensor</option>
+						<option value="1207">Maintenance Investigation</option>
+						<option value="1208">Tip Dress Error</option>
+						<option value="1209">Waiting For Maintenance</option>
+						<option value="1210">Bolt Check</option>
+						<option value="1211">Weld Count</option>
+						<option value="1212">Jig Adjustments</option>
+						<option value="1301">Start Up Checks</option>
+						<option value="1302">Chisel Check</option>
+						<option value="1303">Tip Change</option>
+						<option value="1304">MIG Tip Change</option>
+						<option value="1305">Electrode Change</option>
+						<option value="1306">Waiting On Bins (Internal)</option>
+						<option value="1307">Robot Tip Change</option>
+						<option value="1308">PC Rack Change</option>
+						<option value="1309">Nut Chute Empty</option>
+						<option value="1310">Waiting For Teamleader</option>
+						<option value="1311">Washroom Break</option>
+						<option value="1312">Training</option>
+						<option value="1313">Part Shortage (Internal)</option>
+						<option value="1314">Mig Wire Change</option>
+						<option value="1401">Waiting On Bins (External)</option>
+						<option value="1402">Preventative Maintenance</option>
+						<option value="1403">Parts Shortage (External)</option>
+						<option value="1404">Planned Maintenance</option>
+						<option value="1405">TM Absence</option>
+						<option value="1406">Meeting</option>
+						<option value="1407">Fire Alarm</option>
+						<option value="1408">Power Outage</option>
+						<option value="1409">Tornado</option>
+						<option value="1410">Bomb Threat</option>
+						<option value="1411">Plant Evacuation</option>
+						<option value="1412">Called To Office</option>
+					</select>
+					<label for="comment">Comments</label>
+					<textarea type="text" name="comment" placeholder="Comments?"></textarea>
+					<input type="submit" class="submit">
+				</form>
+			</div>
+		{{else}}
+		<div class="billboard cell-title cell-down">
+			<h2>Error: Unable to locate cell in database!</h2>
+		</div>
+		{{/if}}
+	{{else}}
+		<div class="billboard">
+			<h2><i class="fa fa-spin fa-spinner" area-hidden="true"></i>Loading...</h2>
+		</div>
+	{{/if}}
+</template>

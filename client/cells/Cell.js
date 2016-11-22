@@ -49,11 +49,11 @@ Template.Cell.helpers({
 						++partCount;
 					}
 				}
-				var height = 230;
+				var height = 220;
 				if(partCount){
 					height = height/partCount;
-					if(height < 70){
-						height = 70;
+					if(height < 65){
+						height = 65;
 					}
 				}
 				timeStamp.unshift('timeStamp');

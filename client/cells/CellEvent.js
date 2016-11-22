@@ -1,4 +1,4 @@
-Template.CellIncident.onCreated(function(){
+Template.CellEvent.onCreated(function(){
 	var self = this;
 	self.autorun(function(){
 		var name = FlowRouter.getParam('cellName');
@@ -6,9 +6,13 @@ Template.CellIncident.onCreated(function(){
 	});
 });
 
-Template.CellIncident.helpers({
+Template.CellEvent.helpers({
 	cell:()=>{
 		var name = FlowRouter.getParam('cellName');
 		return Cell.findOne({name:name});
+	},
+	getNow:()=>{
+		var date = moment().format("YYYY-MM-DDTHH:mm");
+		return date;
 	}
 });

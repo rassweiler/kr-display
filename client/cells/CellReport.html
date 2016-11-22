@@ -5,6 +5,20 @@
 				<h2><a href="/cells/{{cell.name}}">{{cell.name}}</a></h2>
 			</div>
 			{{> CellMenu cell=cell}}
+			<div class="report">
+				<h3 class="formtitle">Shift Report</h3>
+				<form class="new-report">
+					<label for="wellness">Wellness(Good:<i class="fa fa-smile-o" area-hidden="true"></i> - Meh:<i class="fa fa-meh-o" area-hidden="true"></i> - Bad:<i class="fa fa-frown-o" area-hidden="true"></i>)</label>
+					<select name="wellness">
+						<option value="good">Good</option>
+						<option value="average">Meh</option>
+						<option value="bad">Bad</option>
+					</select>
+					<label for="comment">Comments</label>
+					<textarea type="text" name="comment" placeholder="Comments?"></textarea>
+					<input type="submit" class="submit">
+				</form>
+			</div>
 		{{else}}
 		<div class="billboard cell-title cell-down">
 			<h2>Error: Unable to locate cell in database!</h2>

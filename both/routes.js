@@ -51,10 +51,10 @@ cellRoutes.route('/:cellName/shift-report', {
 	}
 });
 
-cellRoutes.route('/:cellName/incident-report', {
-	name:'incident',
+cellRoutes.route('/:cellName/event-report', {
+	name:'event',
 	action: function(params) {
-		BlazeLayout.render("MainLayout", {main: "CellIncident"});
+		BlazeLayout.render("MainLayout", {main: "CellEvent"});
 	}
 });
 
