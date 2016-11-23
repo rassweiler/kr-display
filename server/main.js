@@ -164,7 +164,7 @@ Meteor.startup(() => {
 									var andonOn = (rows[0].CallOn.value == "True" || rows[0].CallOn.value == "true" || rows[0].CallOn.value == true) ? true : false;
 									var andonAnswered = (rows[0].CallAnswered.value == "True" || rows[0].CallAnswered.value == "true" || rows[0].CallAnswered.value == true) ? true : false;
 									var shift = rows[0].ShiftName.value;
-									var operator = rows[0].ClockNo.value;
+									var operator = ""+rows[0].ClockNo.value;
 									var downtime = rows[0].TotalCallAnsweredTime.value;
 									var totalDowntime = rows[0].TotalCallTime.value;
 									var startTime = rows[0].OperationStartTime.value;

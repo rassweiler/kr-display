@@ -26,11 +26,11 @@ CellSchema = new SimpleSchema({
 		}
 	},
 	operator:{
-		type: Number,
+		type: String,
 		label: "Current Operator",
 		autoValue: function() {
 			if (this.isInsert) {
-				return 0;
+				return "";
 			}
 		}
 	},
